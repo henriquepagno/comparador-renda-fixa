@@ -1,0 +1,15 @@
+@import '../../styles/variables';
+
+.link {
+  display: flex;
+
+  svg {
+    transition: all 0.2s ease-out;
+  }
+
+  &:hover {
+    svg {
+      transform: translateY(-3px);
+    }
+  }
+}

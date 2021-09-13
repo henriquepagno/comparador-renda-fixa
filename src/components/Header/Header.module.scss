@@ -1,0 +1,51 @@
+@import '../../styles/variables';
+@import '../../styles/animations';
+
+.header {
+  grid-area: header;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3rem 1.5rem;
+
+  font-size: 2.5rem;
+}
+
+.title {
+  font-size: inherit;
+  animation: moveInFromLeft 0.5s ease-out;
+  position: relative;
+  backface-visibility: hidden;
+
+  &::after {
+    content: '';
+
+    transform: rotate(180deg);
+    transform-origin: top;
+
+    height: 100%;
+    width: 1px;
+    position: absolute;
+    right: -15px;
+    top: 100%;
+    background-color: $color-pacificBlue;
+
+    animation: showBorder 1.2s cubic-bezier(0.04, 0.9, 0.36, 1.01) 0.1s;
+  }
+}
+
+.icon {
+  fill: $color-text-dark;
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.external-links__list {
+  display: flex;
+  flex-direction: row;
+
+  li:not(:first-child) {
+    margin-left: 1.5rem;
+  }
+}
