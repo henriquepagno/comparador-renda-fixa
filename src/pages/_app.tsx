@@ -3,11 +3,13 @@ import type { AppProps } from 'next/app';
 
 import Layout from '../layout';
 
+import AppProvider from '../hookStore';
+
 import '../styles/globals.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <AppProvider>
       <Head>
         <title>Comparador | Renda Fixa</title>
         <meta
@@ -20,7 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </>
+    </AppProvider>
   );
 }
 

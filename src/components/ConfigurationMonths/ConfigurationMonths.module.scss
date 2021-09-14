@@ -1,0 +1,16 @@
+@import '../../styles/variables';
+@import '../../styles/animations';
+
+.months {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  grid-area: months;
+
+  span {
+    margin-top: 4px;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+}

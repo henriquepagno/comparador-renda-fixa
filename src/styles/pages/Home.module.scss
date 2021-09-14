@@ -1,0 +1,12 @@
+@import '../variables';
+
+.configuration {
+  display: grid;
+  grid-template-rows: min-content min-content min-content;
+  grid-row-gap: 1.5rem;
+
+  grid-template-areas:
+    'third-party'
+    'months'
+    'button';
+}

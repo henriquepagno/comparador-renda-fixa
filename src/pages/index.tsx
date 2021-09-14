@@ -1,25 +1,16 @@
 import type { NextPage } from 'next';
+import ConfigurationMonths from '../components/ConfigurationMonths';
 
-// import useSWR from 'swr';
+import ThirdPartyData from '../components/ThirdPartyData';
 
-// import api from '../services/api';
-
-// const fetcher = (url: string) => api.get(url).then((res) => res.data);
-
-import useThirdPartyData from '../hooks/useThirdPartyData';
-
-// import styles from '../styles/pages/Home.module.scss';
+import styles from '../styles/pages/Home.module.scss';
 
 const Home: NextPage = () => {
-  // const { data, error } = useSWR('third-party/', fetcher);
+  return (
+    <div className={styles['configuration']}>
+      <ThirdPartyData />
 
-  const { data, isLoading, isError, error } = useThirdPartyData();
-
-  return isLoading ? (
-    <div>loading</div>
-  ) : (
-    <div className="container">
-      {data?.yearlyIpca} e {data?.yearlySelic}
+      <ConfigurationMonths />
     </div>
   );
 };
