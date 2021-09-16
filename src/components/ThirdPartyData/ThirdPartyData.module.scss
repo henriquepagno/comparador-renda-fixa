@@ -1,0 +1,14 @@
+@import '../../styles/variables';
+
+.third-party-data {
+  grid-area: third-party;
+  display: flex;
+  align-self: flex-start;
+
+  div:not(:last-child) {
+    margin-right: 1.5rem;
+  }
+
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid $color-pacificBlue;
+}

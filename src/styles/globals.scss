@@ -8,7 +8,16 @@ body,
 input,
 button {
   font-family: Roboto, sans-serif;
+}
+
+body,
+button {
   color: $color-text-dark;
+}
+
+input {
+  color: $color-spaceCadet;
+  font-size: 1.4rem;
 }
 
 body {

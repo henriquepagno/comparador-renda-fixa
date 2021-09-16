@@ -1,0 +1,10 @@
+@import '../../styles/variables';
+@import '../../styles/animations';
+
+.amount {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  grid-area: amount;
+}
