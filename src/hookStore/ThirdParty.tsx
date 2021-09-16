@@ -30,11 +30,11 @@ export function ThirdPartyProvider({
   const [ipca, setIpca] = useState(0);
   const [selic, setSelic] = useState(0);
 
-  const storeIpca = useCallback(async (yearlyIpca) => {
+  const storeIpca = useCallback(async (yearlyIpca: number) => {
     setIpca(yearlyIpca);
   }, []);
 
-  const storeSelic = useCallback(async (yearlySelic) => {
+  const storeSelic = useCallback(async (yearlySelic: number) => {
     setSelic(yearlySelic);
   }, []);
 

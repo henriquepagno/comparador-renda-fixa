@@ -2,11 +2,13 @@
 
 .configuration {
   display: grid;
-  grid-template-rows: min-content min-content min-content;
+  grid-template-rows: repeat(3, min-content);
+  grid-template-columns: repeat(2, auto);
   grid-row-gap: 1.5rem;
+  grid-column-gap: 1.5rem;
 
   grid-template-areas:
-    'third-party'
-    'months'
-    'button';
+    'third-party third-party'
+    'months amount'
+    'button button';
 }

@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           name="description"
           content="Comparador de aplicações de renda fixa."
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon-2.ico" />
       </Head>
 
       <Layout>

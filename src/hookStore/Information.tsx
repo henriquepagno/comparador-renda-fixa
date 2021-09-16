@@ -30,11 +30,11 @@ export function InformationProvider({
   const [months, setMonths] = useState(12);
   const [amountInvested, setAmountInvested] = useState(1000);
 
-  const storeMonths = useCallback(async (months) => {
+  const storeMonths = useCallback(async (months: number) => {
     setMonths(months);
   }, []);
 
-  const storeAmountInvested = useCallback(async (amount) => {
+  const storeAmountInvested = useCallback(async (amount: number) => {
     setAmountInvested(amount);
   }, []);
 

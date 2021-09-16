@@ -3,7 +3,7 @@ import React, { useEffect, ReactElement } from 'react';
 import useThirdPartyData from '../../hooks/useThirdPartyData';
 import { useThirdParty } from '../../hookStore/ThirdParty';
 
-import Input from '../Input';
+import InputNumber from '../InputNumber';
 import LoadingData from '../LoadingData';
 
 import styles from './ThirdPartyData.module.scss';
@@ -20,11 +20,11 @@ export default function ThirdPartyData(): ReactElement {
     }
   }, [storeIpca, storeSelic, data]);
 
-  function handleChangeIpca(value: number) {
+  function handleChangeIpca(value: number): void {
     storeIpca(value);
   }
 
-  function handleChangeSelic(value: number) {
+  function handleChangeSelic(value: number): void {
     storeSelic(value);
   }
 
@@ -34,17 +34,19 @@ export default function ThirdPartyData(): ReactElement {
         <LoadingData />
       ) : (
         <>
-          <Input
+          <InputNumber
             inputId="ipcaInput"
             label="IPCA"
             value={yearlyIpca}
             onChange={handleChangeIpca}
+            allowDecimal
           />
-          <Input
+          <InputNumber
             inputId="selicInput"
             label="Selic"
             value={yearlySelic}
             onChange={handleChangeSelic}
+            allowDecimal
           />
         </>
       )}
