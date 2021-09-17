@@ -5,6 +5,7 @@ import ConfigurationAmount from '../components/ConfigurationAmount';
 import ConfigurationMonths from '../components/ConfigurationMonths';
 
 import styles from '../styles/pages/Home.module.scss';
+import PrimaryButton from '../components/PrimaryButton';
 
 const Home: NextPage = () => {
   return (
@@ -13,6 +14,8 @@ const Home: NextPage = () => {
 
       <ConfigurationMonths />
       <ConfigurationAmount />
+
+      <PrimaryButton />
     </div>
   );
 };
