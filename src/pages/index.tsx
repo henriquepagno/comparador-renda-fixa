@@ -9,14 +9,21 @@ import PrimaryButton from '../components/PrimaryButton';
 
 const Home: NextPage = () => {
   return (
-    <div className={styles['configuration']}>
-      <ThirdPartyData />
+    <>
+      <h2 className={styles['subtitle']}>
+        Adicione opções de investimento de renda fixa e compare-os em um
+        gráfico.
+      </h2>
 
-      <ConfigurationMonths />
-      <ConfigurationAmount />
+      <div className={styles['configuration']}>
+        <ThirdPartyData />
 
-      <PrimaryButton />
-    </div>
+        <ConfigurationMonths />
+        <ConfigurationAmount />
+
+        <PrimaryButton />
+      </div>
+    </>
   );
 };
 

@@ -1,6 +1,13 @@
 @import '../variables';
 
+.subtitle {
+  grid-area: subtitle;
+  text-align: center;
+}
+
 .configuration {
+  grid-area: information-data;
+
   display: grid;
   grid-template-rows: repeat(3, min-content);
   grid-template-columns: repeat(2, auto);
