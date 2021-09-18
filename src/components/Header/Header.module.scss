@@ -7,13 +7,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 3rem 1.5rem;
+  padding: 3rem 3rem;
 
   font-size: 2.5rem;
 }
 
 .title {
+  font-family: Roboto, sans-serif;
   font-size: inherit;
+  color: $color-text-light;
   animation: moveInFromLeft 0.5s ease-out;
   position: relative;
   backface-visibility: hidden;
@@ -29,7 +31,7 @@
     position: absolute;
     right: -15px;
     top: 100%;
-    background-color: $color-pacificBlue;
+    background-color: $color-primary;
 
     animation: showBorder 1.2s cubic-bezier(0.04, 0.9, 0.36, 1.01) 0.1s;
   }
