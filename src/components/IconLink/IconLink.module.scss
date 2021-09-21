@@ -4,7 +4,7 @@
   display: flex;
 
   svg {
-    transition: all 0.2s ease-out;
+    transition: $base-transition;
   }
 
   &:hover {
