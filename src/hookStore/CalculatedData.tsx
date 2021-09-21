@@ -7,13 +7,23 @@ import React, {
   ReactNode,
 } from 'react';
 
+import {
+  ICalculatedOptions,
+  IChartData,
+} from '../common/interfaces/calculated-data';
+
 interface CalculatedDataContextData {
-  yearlyIpca: number;
-  yearlySelic: number;
+  loading: boolean;
+  chartData: IChartData[];
+  calculatedOptions: ICalculatedOptions[];
   // eslint-disable-next-line no-unused-vars
-  storeIpca(ipca: number): Promise<void>;
+  storeLoading(loading: boolean): void;
   // eslint-disable-next-line no-unused-vars
-  storeSelic(selic: number): Promise<void>;
+  storeChartData(chartData: IChartData[]): Promise<void>;
+  storeCalculatedOptions(
+    // eslint-disable-next-line no-unused-vars
+    calculatedOptions: ICalculatedOptions[]
+  ): Promise<void>;
 }
 
 interface CalculatedDataProviderProps {
@@ -27,24 +37,36 @@ const CalculatedDataContext = createContext<CalculatedDataContextData>(
 export function CalculatedDataProvider({
   children,
 }: CalculatedDataProviderProps): ReactElement {
-  const [ipca, setIpca] = useState(0);
-  const [selic, setSelic] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [chartData, setChartData] = useState<IChartData[]>([]);
+  const [calculatedOptions, setCalculatedOptions] = useState<
+    ICalculatedOptions[]
+  >([]);
 
-  const storeIpca = useCallback(async (yearlyIpca) => {
-    setIpca(yearlyIpca);
+  const storeLoading = useCallback((loading: boolean) => {
+    setLoading(loading);
   }, []);
 
-  const storeSelic = useCallback(async (yearlySelic) => {
-    setSelic(yearlySelic);
+  const storeChartData = useCallback(async (chartData: IChartData[]) => {
+    setChartData(chartData);
   }, []);
+
+  const storeCalculatedOptions = useCallback(
+    async (calculatedOptions: ICalculatedOptions[]) => {
+      setCalculatedOptions(calculatedOptions);
+    },
+    []
+  );
 
   return (
     <CalculatedDataContext.Provider
       value={{
-        yearlyIpca: ipca,
-        yearlySelic: selic,
-        storeIpca,
-        storeSelic,
+        loading,
+        chartData,
+        calculatedOptions,
+        storeLoading,
+        storeChartData,
+        storeCalculatedOptions,
       }}
     >
       {children}

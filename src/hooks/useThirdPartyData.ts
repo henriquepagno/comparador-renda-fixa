@@ -10,15 +10,15 @@ interface IData {
 }
 
 interface IThirdPartyData {
-  successful: boolean;
-  data: IData;
+  successful?: boolean;
+  data?: IData;
   error?: any;
   isLoading: boolean;
   isError: boolean;
 }
 
 export default function useThirdPartyData(): IThirdPartyData {
-  const { data, error } = useSWR('third-party/', fetcher);
+  const { data, error } = useSWR<IThirdPartyData>('third-party/', fetcher);
 
   return {
     successful: data?.successful,
