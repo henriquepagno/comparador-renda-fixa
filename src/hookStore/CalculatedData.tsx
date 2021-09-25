@@ -19,11 +19,11 @@ interface CalculatedDataContextData {
   // eslint-disable-next-line no-unused-vars
   storeLoading(loading: boolean): void;
   // eslint-disable-next-line no-unused-vars
-  storeChartData(chartData: IChartData[]): Promise<void>;
+  storeChartData(chartData: IChartData[]): void;
   storeCalculatedOptions(
     // eslint-disable-next-line no-unused-vars
     calculatedOptions: ICalculatedOptions[]
-  ): Promise<void>;
+  ): void;
 }
 
 interface CalculatedDataProviderProps {
@@ -47,12 +47,12 @@ export function CalculatedDataProvider({
     setLoading(loading);
   }, []);
 
-  const storeChartData = useCallback(async (chartData: IChartData[]) => {
+  const storeChartData = useCallback((chartData: IChartData[]) => {
     setChartData(chartData);
   }, []);
 
   const storeCalculatedOptions = useCallback(
-    async (calculatedOptions: ICalculatedOptions[]) => {
+    (calculatedOptions: ICalculatedOptions[]) => {
       setCalculatedOptions(calculatedOptions);
     },
     []

@@ -11,9 +11,9 @@ interface InformationContextData {
   months: number;
   amountInvested: number;
   // eslint-disable-next-line no-unused-vars
-  storeMonths(months: number): Promise<void>;
+  storeMonths(months: number): void;
   // eslint-disable-next-line no-unused-vars
-  storeAmountInvested(amount: number): Promise<void>;
+  storeAmountInvested(amount: number): void;
 }
 
 interface InformationProviderProps {
@@ -30,11 +30,11 @@ export function InformationProvider({
   const [months, setMonths] = useState(12);
   const [amountInvested, setAmountInvested] = useState(1000);
 
-  const storeMonths = useCallback(async (months: number) => {
+  const storeMonths = useCallback((months: number) => {
     setMonths(months);
   }, []);
 
-  const storeAmountInvested = useCallback(async (amount: number) => {
+  const storeAmountInvested = useCallback((amount: number) => {
     setAmountInvested(amount);
   }, []);
 

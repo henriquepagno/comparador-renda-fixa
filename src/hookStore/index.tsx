@@ -3,6 +3,7 @@ import React, { ReactElement, ReactNode } from 'react';
 import { ThirdPartyProvider } from './ThirdParty';
 import { CalculatedDataProvider } from './CalculatedData';
 import { InformationProvider } from './Information';
+import { ModalProvider } from './Modal';
 
 interface AppProviderProps {
   children: ReactNode;
@@ -14,7 +15,9 @@ export default function AppProvider({
   return (
     <ThirdPartyProvider>
       <CalculatedDataProvider>
-        <InformationProvider>{children}</InformationProvider>
+        <InformationProvider>
+          <ModalProvider>{children}</ModalProvider>
+        </InformationProvider>
       </CalculatedDataProvider>
     </ThirdPartyProvider>
   );

@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 
 import Header from '../components/Header';
+import InvestmentOptionModal from '../components/InvestmentOptionModal';
 
 import styles from './layout.module.scss';
 
@@ -13,6 +14,7 @@ export default function Layout({ children }: LayoutProps): ReactElement {
     <div className={styles['content']}>
       <Header />
       <main className={styles['page-content']}>{children}</main>
+      <InvestmentOptionModal />
     </div>
   );
 }

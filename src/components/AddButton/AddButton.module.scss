@@ -1,16 +1,21 @@
 @import '../../styles/variables';
 
-.primary-button {
+.add-button {
   display: flex;
   justify-content: flex-end;
 
-  grid-area: calculate-button;
+  grid-area: add-button;
 
   &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     border: none;
     border-radius: 4px;
     width: 100%;
-    background-color: $color-primary;
+    background-color: transparent;
+    border: solid 1px $color-primary;
     color: $color-text-light;
     font-size: 1.5rem;
     font-weight: 500;
@@ -20,6 +25,12 @@
 
     &:hover {
       background-color: darken($color-primary, 15%);
+    }
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+      margin-right: 1rem;
     }
   }
 }
