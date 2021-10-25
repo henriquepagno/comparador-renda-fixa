@@ -11,12 +11,15 @@
   "dependencies": {
     "antd": "^4.16.13",
     "axios": "^0.21.1",
+    "clsx": "^1.1.1",
     "next": "11.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "^4.2.0",
+    "react-select": "^5.0.0",
     "recharts": "2.1.2",
     "sass": "^1.37.5",
+    "short-unique-id": "^4.4.4",
     "swr": "^1.0.1"
   },
   "devDependencies": {

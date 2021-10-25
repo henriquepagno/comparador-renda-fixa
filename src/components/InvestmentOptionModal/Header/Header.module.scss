@@ -1,0 +1,27 @@
+@import '../../../styles/variables';
+@import '../../../styles/animations';
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1.5rem;
+
+  width: 50rem;
+
+  font-size: 2rem;
+
+  border-bottom: 1px solid $color-primary;
+}
+
+.icon {
+  fill: $color-text-dark;
+  height: 2.5rem;
+  width: 2.5rem;
+  cursor: pointer;
+  transition: $base-transition;
+
+  &:hover {
+    fill: darken($color-text-dark, 15%);
+  }
+}

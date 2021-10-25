@@ -1,0 +1,41 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.label {
+  @include label;
+}
+
+.react-select-container {
+  font-size: 1.4rem;
+
+  [class$='control'] {
+    background-color: $color-background-input;
+    border: none;
+    box-shadow: none;
+  }
+
+  [class$='control']:hover {
+    box-shadow: none;
+  }
+
+  [class$='singleValue'] {
+    color: $color-text-dark;
+  }
+
+  [class$='Input'] {
+    color: $color-text-dark;
+  }
+
+  [class$='menu'] {
+    color: $color-text-light;
+    background-color: $color-background-input;
+
+    [class$='9gakcf-option'] {
+      background-color: $color-primary;
+    }
+
+    [class$='1n7v3ny-option'] {
+      background-color: darken($color-primary, 5%);
+    }
+  }
+}

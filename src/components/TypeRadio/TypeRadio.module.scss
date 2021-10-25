@@ -1,0 +1,58 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.label {
+  @include label;
+}
+
+.radio {
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: center;
+
+  [class~='ant-radio-wrapper'] {
+    cursor: pointer;
+    // position: relative;
+
+    [class~='ant-radio'] {
+      margin-right: 2.5rem;
+
+      [class~='ant-radio-input'] {
+        cursor: inherit;
+        display: none;
+      }
+
+      [class~='ant-radio-input']:checked ~ [class~='ant-radio-inner']::after {
+        opacity: 1;
+      }
+
+      [class~='ant-radio-inner'] {
+        height: 2rem;
+        width: 2rem;
+        border: 1px solid $color-text-dark;
+        border-radius: 4px;
+        display: inline-block;
+        position: absolute;
+      }
+
+      [class~='ant-radio-inner']::after {
+        content: '';
+        display: block;
+        height: 1.3rem;
+        width: 1.3rem;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: $color-primary;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+    }
+  }
+
+  [class~='ant-radio-wrapper']:not(:last-child) {
+    margin-right: 2rem;
+  }
+}

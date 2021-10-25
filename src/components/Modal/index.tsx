@@ -29,8 +29,11 @@ export default function Modal({
   );
 
   return visible ? (
-    <div className={styles['container']} ref={modalRef}>
-      <div className={styles['content']}>{children}</div>
+    <div className={styles['modal']} ref={modalRef}>
+      <div className={styles['modal-mask']} />
+      <div className={styles['modal-wrap']}>
+        <div className={styles['modal-content']}>{children}</div>
+      </div>
     </div>
   ) : (
     <></>

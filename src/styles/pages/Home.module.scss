@@ -13,6 +13,7 @@
   grid-template-columns: repeat(2, auto);
   grid-row-gap: 1.5rem;
   grid-column-gap: 1.5rem;
+  grid-auto-rows: min-content;
 
   grid-template-areas:
     'third-party third-party'

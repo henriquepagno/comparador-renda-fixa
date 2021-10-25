@@ -1,0 +1,36 @@
+@import '../../styles/variables';
+
+.container {
+  border-radius: 25px;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  font-weight: 700;
+  color: $color-text-light;
+
+  &--pink {
+    background-color: darken($investment-pink, 5%);
+  }
+
+  &--red {
+    background-color: $investment-red;
+  }
+
+  &--purple {
+    background-color: $investment-purple;
+  }
+
+  &--blue {
+    background-color: $investment-blue;
+  }
+
+  &--yellow {
+    background-color: darken($investment-yellow, 5%);
+    color: darken($color-text-dark, 10%);
+  }
+
+  &--orange {
+    background-color: darken($investment-orange, 5%);
+    color: darken($color-text-dark, 10%);
+  }
+}

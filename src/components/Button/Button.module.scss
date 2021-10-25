@@ -1,0 +1,47 @@
+@import '../../styles/variables';
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  padding: 1rem 1.5rem;
+  color: $color-text-light;
+  border-radius: $base-border-radius;
+
+  transition: $base-transition;
+
+  &:hover {
+    background-color: darken($color-primary, 15%);
+    border-color: darken($color-primary, 15%);
+  }
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1rem;
+  }
+
+  &--primary {
+    border: none;
+    background-color: $color-primary;
+  }
+
+  &--secondary {
+    background-color: transparent;
+    border: solid 1px $color-primary;
+  }
+
+  &--icon {
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}

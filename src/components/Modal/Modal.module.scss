@@ -1,5 +1,46 @@
 @import '../../styles/variables';
+@import '../../styles/animations';
 
 .modal {
-  line-height: 1px;
+  height: 100%;
+  width: 100%;
+
+  pointer-events: none;
+  position: relative;
+  width: auto;
+  max-width: calc(100vw - 3rem);
+
+  &-mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 900;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45);
+  }
+
+  &-wrap {
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    overflow: auto;
+    outline: 0;
+    -webkit-overflow-scrolling: touch;
+    z-index: 1000;
+    transform: translateX(-50%);
+    width: auto;
+
+    animation: appearfromTop 0.5s ease-out;
+  }
+
+  &-content {
+    position: relative;
+    background-color: $color-background;
+    border-radius: $base-border-radius;
+    border: 1px solid $color-gray;
+    pointer-events: auto;
+    width: auto;
+  }
 }
