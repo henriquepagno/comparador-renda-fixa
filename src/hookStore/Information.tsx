@@ -7,13 +7,25 @@ import React, {
   ReactNode,
 } from 'react';
 
+import { assignColor } from '../common/functions/color';
+
+import { ICalculatedOptions } from '../common/interfaces/calculated-data';
+import { IInvestmentOption } from '../common/interfaces/investment-option';
+
 interface InformationContextData {
   months: number;
   amountInvested: number;
+  investmentOptions: IInvestmentOption[];
   // eslint-disable-next-line no-unused-vars
-  storeMonths(months: number): Promise<void>;
+  storeMonths(months: number): void;
   // eslint-disable-next-line no-unused-vars
-  storeAmountInvested(amount: number): Promise<void>;
+  storeAmountInvested(amount: number): void;
+  // eslint-disable-next-line no-unused-vars
+  addInvestmentOption(investmentOption: IInvestmentOption): void;
+  // eslint-disable-next-line no-unused-vars
+  removeInvestmentOption(investmentId: string): void;
+  // eslint-disable-next-line no-unused-vars
+  storeInvestmentResults(calculatedOptions: ICalculatedOptions[]): void;
 }
 
 interface InformationProviderProps {
@@ -29,22 +41,71 @@ export function InformationProvider({
 }: InformationProviderProps): ReactElement {
   const [months, setMonths] = useState(12);
   const [amountInvested, setAmountInvested] = useState(1000);
+  const [investmentOptions, setInvestmentOptions] = useState<
+    IInvestmentOption[]
+  >([]);
 
-  const storeMonths = useCallback(async (months: number) => {
+  const storeMonths = useCallback((months: number) => {
     setMonths(months);
   }, []);
 
-  const storeAmountInvested = useCallback(async (amount: number) => {
+  const storeAmountInvested = useCallback((amount: number) => {
     setAmountInvested(amount);
   }, []);
+
+  const addInvestmentOption = useCallback(
+    (investmentOption: IInvestmentOption) => {
+      if (investmentOptions.length < 6) {
+        investmentOption.color = assignColor(investmentOptions) as
+          | 'pink'
+          | 'red'
+          | 'purple'
+          | 'blue'
+          | 'yellow'
+          | 'orange';
+
+        let newInvestmentOptions = investmentOptions;
+        newInvestmentOptions.push(investmentOption);
+
+        setInvestmentOptions(newInvestmentOptions);
+      }
+    },
+    [investmentOptions]
+  );
+
+  const removeInvestmentOption = useCallback(
+    (investmentId: string) => {
+      setInvestmentOptions(
+        investmentOptions.filter((i) => i.id != investmentId)
+      );
+    },
+    [investmentOptions]
+  );
+
+  const storeInvestmentResults = useCallback(
+    (calculatedOptions: ICalculatedOptions[]) => {
+      investmentOptions.forEach((investment) => {
+        const option = calculatedOptions.find((a) => a.id === investment.id);
+
+        investment.grossYield = option?.grossYield;
+        investment.netYield = option?.netYield;
+        investment.ranking = option?.ranking;
+      });
+    },
+    [investmentOptions]
+  );
 
   return (
     <InformationContext.Provider
       value={{
         months: months,
         amountInvested: amountInvested,
+        investmentOptions: investmentOptions,
         storeMonths,
         storeAmountInvested,
+        addInvestmentOption,
+        removeInvestmentOption,
+        storeInvestmentResults,
       }}
     >
       {children}

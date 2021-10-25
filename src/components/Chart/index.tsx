@@ -9,15 +9,18 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+import { getColor } from '../../common/functions/color';
 
-import { useCalculatedData } from '../../hookStore/CalculatedData';
+import { useChart } from '../../hookStore/Chart';
+import { useInformation } from '../../hookStore/Information';
 
 import LoadingData from '../LoadingData';
 
 import styles from './Chart.module.scss';
 
 export default function Chart(): ReactElement {
-  const { loading, chartData } = useCalculatedData();
+  const { loading, chartData } = useChart();
+  const { investmentOptions } = useInformation();
 
   return (
     <div className={styles['chart']}>
@@ -39,8 +42,30 @@ export default function Chart(): ReactElement {
             <YAxis domain={['auto', 'auto']} />
             <Tooltip />
             <Legend />
-            <Line type="monotone" dataKey="IPCA" stroke="#8884d8" />
-            <Line type="monotone" dataKey="CDI" stroke="#82ca9d" />
+            <Line
+              type="monotone"
+              dataKey="IPCA"
+              stroke="#8884d8"
+              strokeDasharray="3 3"
+            />
+            <Line
+              type="monotone"
+              dataKey="CDI"
+              stroke="#82ca9d"
+              strokeDasharray="3 3"
+            />
+            {investmentOptions.map((investment, index) => {
+              return (
+                <Line
+                  key={index}
+                  type="monotone"
+                  dataKey={investment.id}
+                  stroke={getColor(investment.color)}
+                  legendType="diamond"
+                  strokeWidth={2}
+                />
+              );
+            })}
           </LineChart>
         </ResponsiveContainer>
       )}

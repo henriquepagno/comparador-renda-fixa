@@ -11,9 +11,9 @@ interface ThirdPartyContextData {
   yearlyIpca: number;
   yearlySelic: number;
   // eslint-disable-next-line no-unused-vars
-  storeIpca(ipca: number): Promise<void>;
+  storeIpca(ipca: number): void;
   // eslint-disable-next-line no-unused-vars
-  storeSelic(selic: number): Promise<void>;
+  storeSelic(selic: number): void;
 }
 
 interface ThirdPartyProviderProps {
@@ -30,11 +30,11 @@ export function ThirdPartyProvider({
   const [ipca, setIpca] = useState(0);
   const [selic, setSelic] = useState(0);
 
-  const storeIpca = useCallback(async (yearlyIpca: number) => {
+  const storeIpca = useCallback((yearlyIpca: number) => {
     setIpca(yearlyIpca);
   }, []);
 
-  const storeSelic = useCallback(async (yearlySelic: number) => {
+  const storeSelic = useCallback((yearlySelic: number) => {
     setSelic(yearlySelic);
   }, []);
 

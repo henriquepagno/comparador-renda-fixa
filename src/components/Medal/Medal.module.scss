@@ -1,0 +1,23 @@
+@import '../../styles/variables';
+@import '../../styles/animations';
+
+.medal {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  right: 1.5rem;
+  transition: $base-transition;
+  animation: appear 1s ease-out;
+
+  &--gold {
+    fill: $medal-gold;
+  }
+
+  &--silver {
+    fill: $medal-silver;
+  }
+
+  &--bronze {
+    fill: $medal-bronze;
+  }
+}

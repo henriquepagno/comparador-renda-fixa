@@ -1,0 +1,105 @@
+@import '../../styles/variables';
+@import '../../styles/animations';
+
+.container {
+  position: relative;
+  border: 1px solid;
+  border-radius: $base-border-radius;
+  min-height: 8rem;
+  padding: 1.5rem 1rem 0rem 1rem;
+  font-size: 1.2rem;
+  background-color: $color-background-input;
+  animation: appear 1s ease-out;
+  transition: $base-transition;
+
+  &:hover {
+    transform: scale(1.05);
+
+    > button {
+      opacity: 1;
+    }
+  }
+
+  div {
+    margin-bottom: 1rem;
+  }
+
+  &--pink {
+    border-color: $investment-pink;
+  }
+
+  &--red {
+    border-color: $investment-red;
+  }
+
+  &--purple {
+    border-color: $investment-purple;
+  }
+
+  &--blue {
+    border-color: $investment-blue;
+  }
+
+  &--yellow {
+    border-color: $investment-yellow;
+  }
+
+  &--orange {
+    border-color: $investment-orange;
+  }
+}
+
+.tag-container {
+  display: flex;
+  justify-content: center;
+}
+
+.attributes {
+  display: grid;
+  grid-template-columns: repeat(3, minmnax(min-content, 1fr));
+  grid-column-gap: 0.4rem;
+  justify-content: space-evenly;
+
+  grid-template-areas: 'category type interest';
+
+  font-weight: 700;
+
+  p {
+    border-bottom: 1px solid $color-text-dark;
+  }
+}
+
+.calculated-values {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  span {
+    animation: appear 0.2s ease-out;
+  }
+
+  &__net-yield {
+    margin-top: 0.5rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+}
+
+.delete-button {
+  position: absolute;
+  left: 1.5rem;
+  width: min-content;
+  padding: 0 0;
+  opacity: 0;
+  transition: $base-transition;
+
+  svg {
+    transition: $base-transition;
+  }
+
+  &:hover {
+    svg {
+      fill: $color-imperialRed;
+    }
+  }
+}
