@@ -5,7 +5,7 @@ import styles from './Tag.module.scss';
 
 interface ITag {
   description: string;
-  color: 'pink' | 'red' | 'purple' | 'blue' | 'yellow' | 'orange';
+  color: 'pink' | 'red' | 'purple' | 'blue' | 'yellow' | 'orange' | '';
 }
 
 export default function Tag({ description, color }: ITag): ReactElement {

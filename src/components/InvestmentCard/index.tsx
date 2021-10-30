@@ -13,7 +13,7 @@ interface IInvestmentCard {
   category: string;
   type: 'PRE' | 'POS_CDI' | 'POS_IPCA';
   interest: number;
-  color: 'pink' | 'red' | 'purple' | 'blue' | 'yellow' | 'orange';
+  color: 'pink' | 'red' | 'purple' | 'blue' | 'yellow' | 'orange' | '';
   netYield?: number;
   grossYield?: number;
   ranking?: number;

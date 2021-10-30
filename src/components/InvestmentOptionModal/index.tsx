@@ -30,6 +30,7 @@ export default function InvestmentOptionModal(): ReactElement {
       category: values.category.value,
       type: values.type,
       interest: values.interest,
+      color: '',
     });
 
     storeInvestmentOptionModalVisible(false);
