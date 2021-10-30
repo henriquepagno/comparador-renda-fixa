@@ -14,6 +14,6 @@ export function assignColor(investmentOptions: IInvestmentOption[]): string {
   return '';
 }
 
-export function getColor(colorName: string): string {
+export function getColor(colorName: string | undefined): string {
   return Colors[colorName as keyof typeof Colors];
 }
