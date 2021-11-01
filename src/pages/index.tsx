@@ -28,6 +28,8 @@ const Home: NextPage = () => {
     investmentOptions,
     storeInvestmentResults,
     removeInvestmentOption,
+    hightlightInvestmentOption,
+    unhightlightInvestmentOption,
   } = useInformation();
   const { storeLoading, storeChartData } = useChart();
   const { storeInvestmentOptionModalVisible } = useModal();
@@ -105,6 +107,12 @@ const Home: NextPage = () => {
               ranking={investment.ranking}
               onRemove={() => {
                 removeInvestmentOption(investment.id);
+              }}
+              onMouseOverFunction={() => {
+                hightlightInvestmentOption(investment.id);
+              }}
+              onMouseLeaveFunction={() => {
+                unhightlightInvestmentOption();
               }}
             />
           );

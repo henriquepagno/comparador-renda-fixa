@@ -7,4 +7,5 @@ export interface IInvestmentOption {
   grossYield?: number;
   netYield?: number;
   ranking?: number;
+  shouldHighlight?: boolean;
 }
