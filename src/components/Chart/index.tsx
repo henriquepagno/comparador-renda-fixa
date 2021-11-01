@@ -62,7 +62,7 @@ export default function Chart(): ReactElement {
                   dataKey={investment.id}
                   stroke={getColor(investment.color)}
                   legendType="diamond"
-                  strokeWidth={2}
+                  strokeWidth={investment.shouldHighlight ? 4 : 2}
                 />
               );
             })}

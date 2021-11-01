@@ -18,6 +18,8 @@ interface IInvestmentCard {
   grossYield?: number;
   ranking?: number;
   onRemove(): void;
+  onMouseOverFunction(): void;
+  onMouseLeaveFunction(): void;
 }
 
 export default function InvestmentCard({
@@ -30,6 +32,8 @@ export default function InvestmentCard({
   grossYield,
   ranking,
   onRemove,
+  onMouseOverFunction,
+  onMouseLeaveFunction,
 }: IInvestmentCard): ReactElement {
   const classes = clsx(
     styles['container'],
@@ -71,7 +75,15 @@ export default function InvestmentCard({
   const formattednetYield = valueFormatter.format(netYield || 0);
 
   return (
-    <div className={classes}>
+    <div
+      className={classes}
+      onMouseOver={() => {
+        onMouseOverFunction();
+      }}
+      onMouseLeave={() => {
+        onMouseLeaveFunction();
+      }}
+    >
       <Button
         className={styles['delete-button']}
         icon={<AiOutlineDelete />}

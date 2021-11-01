@@ -25,6 +25,9 @@ interface InformationContextData {
   // eslint-disable-next-line no-unused-vars
   removeInvestmentOption(investmentId: string): void;
   // eslint-disable-next-line no-unused-vars
+  hightlightInvestmentOption(investmentId: string): void;
+  unhightlightInvestmentOption(): void;
+  // eslint-disable-next-line no-unused-vars
   storeInvestmentResults(calculatedOptions: ICalculatedOptions[]): void;
 }
 
@@ -64,6 +67,8 @@ export function InformationProvider({
           | 'yellow'
           | 'orange';
 
+        investmentOption.shouldHighlight = false;
+
         let newInvestmentOptions = investmentOptions;
         newInvestmentOptions.push(investmentOption);
 
@@ -81,6 +86,31 @@ export function InformationProvider({
     },
     [investmentOptions]
   );
+
+  const hightlightInvestmentOption = useCallback(
+    (investmentId: string) => {
+      const newInvestmentArray = investmentOptions.map((investment) => {
+        return {
+          ...investment,
+          shouldHighlight: investment.id === investmentId ? true : false,
+        };
+      });
+
+      setInvestmentOptions(newInvestmentArray);
+    },
+    [investmentOptions]
+  );
+
+  const unhightlightInvestmentOption = useCallback(() => {
+    const newInvestmentArray = investmentOptions.map((investment) => {
+      return {
+        ...investment,
+        shouldHighlight: false,
+      };
+    });
+
+    setInvestmentOptions(newInvestmentArray);
+  }, [investmentOptions]);
 
   const storeInvestmentResults = useCallback(
     (calculatedOptions: ICalculatedOptions[]) => {
@@ -105,6 +135,8 @@ export function InformationProvider({
         storeAmountInvested,
         addInvestmentOption,
         removeInvestmentOption,
+        hightlightInvestmentOption,
+        unhightlightInvestmentOption,
         storeInvestmentResults,
       }}
     >
