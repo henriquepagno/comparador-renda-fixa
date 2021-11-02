@@ -71,11 +71,6 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <h2 className={styles['subtitle']}>
-        Adicione opções de investimento de renda fixa e compare-os em um
-        gráfico.
-      </h2>
-
       <div className={styles['configuration']}>
         <ThirdPartyData />
 

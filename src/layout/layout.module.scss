@@ -20,8 +20,5 @@
   grid-row-gap: 3rem;
   grid-column-gap: 3rem;
   grid-template-columns: min-content minmax(6rem, 1fr);
-  grid-template-rows: min-content minmax(6rem, 1fr);
-  grid-template-areas:
-    'subtitle subtitle'
-    'information-data calculated-data';
+  grid-template-areas: 'information-data calculated-data';
 }

@@ -9,7 +9,13 @@ import styles from './Header.module.scss';
 export default function Header(): ReactElement {
   return (
     <header className={styles['header']}>
-      <h1 className={styles['title']}>Comparador Renda Fixa</h1>
+      <div className={styles['title-container']}>
+        <h1 className={styles['title']}>Comparador Renda Fixa</h1>
+        <h2 className={styles['subtitle']}>
+          Adicione opções de investimento de renda fixa e compare-os em um
+          gráfico.
+        </h2>
+      </div>
 
       <ul className={styles['external-links__list']}>
         <li>

@@ -12,6 +12,12 @@
   font-size: 2.5rem;
 }
 
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .title {
   font-family: Roboto, sans-serif;
   font-size: inherit;
@@ -35,6 +41,12 @@
 
     animation: showBorder 1.2s cubic-bezier(0.04, 0.9, 0.36, 1.01) 0.1s;
   }
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  animation: moveInFromLeft 0.5s ease-out;
+  backface-visibility: hidden;
 }
 
 .icon {
