@@ -113,7 +113,7 @@ export function InformationProvider({
   }, [investmentOptions]);
 
   const storeInvestmentResults = useCallback(
-    (calculatedOptions: ICalculatedOptions[]) => {
+    async (calculatedOptions: ICalculatedOptions[]) => {
       investmentOptions.forEach((investment) => {
         const option = calculatedOptions.find((a) => a.id === investment.id);
 
