@@ -113,14 +113,19 @@ export function InformationProvider({
   }, [investmentOptions]);
 
   const storeInvestmentResults = useCallback(
-    async (calculatedOptions: ICalculatedOptions[]) => {
-      investmentOptions.forEach((investment) => {
+    (calculatedOptions: ICalculatedOptions[]) => {
+      const newInvestmentArray = investmentOptions.map((investment) => {
         const option = calculatedOptions.find((a) => a.id === investment.id);
 
-        investment.grossYield = option?.grossYield;
-        investment.netYield = option?.netYield;
-        investment.ranking = option?.ranking;
+        return {
+          ...investment,
+          grossYield: option?.grossYield,
+          netYield: option?.netYield,
+          ranking: option?.ranking,
+        };
       });
+
+      setInvestmentOptions(newInvestmentArray);
     },
     [investmentOptions]
   );
