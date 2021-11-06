@@ -78,6 +78,11 @@ const Home: NextPage = () => {
         <ConfigurationAmount />
 
         <Button
+          className={
+            investmentOptions.length === 0
+              ? styles['add-button-animation']
+              : undefined
+          }
           label="Adicionar"
           onClick={() => {
             storeInvestmentOptionModalVisible(true);

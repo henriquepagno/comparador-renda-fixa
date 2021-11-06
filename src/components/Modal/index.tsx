@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef } from 'react';
+import React, { ReactElement, useRef, ReactNode } from 'react';
 
 import useVisibleHandler from '../../hooks/useVisibleHandler';
 
@@ -8,7 +8,7 @@ interface IModalProps {
   visible: boolean;
   // eslint-disable-next-line no-unused-vars
   setVisible(visible: boolean): void;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export default function Modal({

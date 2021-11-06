@@ -1,4 +1,5 @@
 @import '../variables';
+@import '../animations';
 
 .subtitle {
   grid-area: subtitle;
@@ -19,4 +20,15 @@
     'third-party third-party'
     'months amount'
     'add-button calculate-button';
+
+  margin-bottom: 1.5rem;
+}
+
+.add-button-animation {
+  backface-visibility: hidden;
+  animation: pulse 5s infinite;
+
+  &:hover {
+    animation: none;
+  }
 }
