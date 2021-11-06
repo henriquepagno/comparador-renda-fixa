@@ -15,6 +15,7 @@ import { useChart } from '../../hookStore/Chart';
 import { useInformation } from '../../hookStore/Information';
 
 import LoadingData from '../LoadingData';
+import NoChartData from '../NoChartData';
 
 import styles from './Chart.module.scss';
 
@@ -24,57 +25,59 @@ export default function Chart(): ReactElement {
 
   return (
     <div className={styles['chart']}>
-      {loading ? (
-        <LoadingData />
-      ) : (
-        <>
-          <ResponsiveContainer width="100%" height="95%">
-            <LineChart
-              data={chartData}
-              margin={{
-                top: 15,
-                right: 25,
-                left: -10,
-                bottom: 5,
-              }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis domain={['auto', 'auto']} />
-              <Tooltip />
-              <Legend wrapperStyle={{ bottom: -5 }} />
-              <Line
-                type="monotone"
-                dataKey="IPCA"
-                stroke="#8884d8"
-                strokeDasharray="3 3"
-              />
-              <Line
-                type="monotone"
-                dataKey="CDI"
-                stroke="#82ca9d"
-                strokeDasharray="3 3"
-              />
-              {investmentOptions.map((investment, index) => {
-                return (
-                  <Line
-                    key={index}
-                    type="monotone"
-                    dataKey={investment.id}
-                    stroke={getColor(investment.color)}
-                    legendType="diamond"
-                    strokeWidth={investment.shouldHighlight ? 4 : 2}
-                  />
-                );
-              })}
-            </LineChart>
-          </ResponsiveContainer>
-          <p className={styles['ir-message']}>
-            <sup>*</sup> Uma queda do investimento no gráfico indica o pagamento
-            de Imposto de Renda.
-          </p>
-        </>
-      )}
+      <LoadingData loading={loading}>
+        {chartData.length === 0 ? (
+          <NoChartData />
+        ) : (
+          <>
+            <ResponsiveContainer width="100%" height="95%">
+              <LineChart
+                data={chartData}
+                margin={{
+                  top: 15,
+                  right: 25,
+                  left: -10,
+                  bottom: 5,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis domain={['auto', 'auto']} />
+                <Tooltip />
+                <Legend wrapperStyle={{ bottom: -5 }} />
+                <Line
+                  type="monotone"
+                  dataKey="IPCA"
+                  stroke="#8884d8"
+                  strokeDasharray="3 3"
+                />
+                <Line
+                  type="monotone"
+                  dataKey="CDI"
+                  stroke="#82ca9d"
+                  strokeDasharray="3 3"
+                />
+                {investmentOptions.map((investment, index) => {
+                  return (
+                    <Line
+                      key={index}
+                      type="monotone"
+                      dataKey={investment.id}
+                      stroke={getColor(investment.color)}
+                      legendType="diamond"
+                      strokeWidth={investment.shouldHighlight ? 4 : 2}
+                    />
+                  );
+                })}
+              </LineChart>
+            </ResponsiveContainer>
+            <p className={styles['ir-message']}>
+              <sup>*</sup> Uma queda do investimento no gráfico indica o
+              pagamento de Imposto de Renda.
+            </p>
+          </>
+        )}
+      </LoadingData>
     </div>
   );
 }

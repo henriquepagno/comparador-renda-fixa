@@ -47,3 +47,24 @@
     opacity: 1;
   }
 }
+
+@keyframes pulse {
+  0% {
+    box-shadow: none;
+  }
+  15% {
+    box-shadow: 0 0 0.5rem rgba($color-secondary, 0.5) inset;
+  }
+  25% {
+    box-shadow: 0 0 1.5rem rgba($color-secondary, 0.5) inset;
+  }
+  45% {
+    box-shadow: 0 0 0.5rem rgba($color-secondary, 0.5) inset;
+  }
+  50% {
+    box-shadow: 0 0 0 rgba($color-secondary, 0.5) inset;
+  }
+  100% {
+    box-shadow: none;
+  }
+}

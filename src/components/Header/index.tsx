@@ -10,7 +10,7 @@ export default function Header(): ReactElement {
   return (
     <header className={styles['header']}>
       <div className={styles['title-container']}>
-        <h1 className={styles['title']}>Comparador Renda Fixa</h1>
+        <h1 className={styles['title']}>Comparador de Renda Fixa</h1>
         <h2 className={styles['subtitle']}>
           Adicione opções de investimento de renda fixa e compare-os em um
           gráfico.

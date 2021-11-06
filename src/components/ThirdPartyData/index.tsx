@@ -30,9 +30,7 @@ export default function ThirdPartyData(): ReactElement {
 
   return (
     <div className={styles['third-party-data']}>
-      {isLoading ? (
-        <LoadingData />
-      ) : (
+      <LoadingData loading={isLoading}>
         <>
           <InputNumber
             inputId="ipcaInput"
@@ -49,7 +47,7 @@ export default function ThirdPartyData(): ReactElement {
             allowDecimal
           />
         </>
-      )}
+      </LoadingData>
     </div>
   );
 }
