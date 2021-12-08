@@ -21,7 +21,7 @@ import { IInvestmentOption } from '../common/interfaces/investment-option';
 import InvestmentCard from '../components/InvestmentCard';
 
 const Home: NextPage = () => {
-  const { yearlyIpca, yearlySelic } = useThirdParty();
+  const { yearlyIpca, yearlyDi } = useThirdParty();
   const {
     months,
     amountInvested,
@@ -47,7 +47,7 @@ const Home: NextPage = () => {
 
   const requestData = {
     yearlyIpca,
-    yearlySelic,
+    yearlyDi,
     amountInvested,
     monthsDuration: months,
     options: options,

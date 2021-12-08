@@ -7,6 +7,7 @@ const fetcher = (url: string) => api.get(url).then((res) => res.data);
 interface IData {
   yearlyIpca: number;
   yearlySelic: number;
+  yearlyDi: number;
 }
 
 interface IThirdPartyData {
