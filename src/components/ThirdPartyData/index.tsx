@@ -11,21 +11,21 @@ import styles from './ThirdPartyData.module.scss';
 export default function ThirdPartyData(): ReactElement {
   const { data, isLoading } = useThirdPartyData();
 
-  const { storeIpca, storeSelic, yearlyIpca, yearlySelic } = useThirdParty();
+  const { storeIpca, storeDi, yearlyIpca, yearlyDi } = useThirdParty();
 
   useEffect(() => {
     if (data) {
       storeIpca(data.yearlyIpca);
-      storeSelic(data.yearlySelic);
+      storeDi(data.yearlyDi);
     }
-  }, [storeIpca, storeSelic, data]);
+  }, [storeIpca, storeDi, data]);
 
   function handleChangeIpca(value: number): void {
     storeIpca(value);
   }
 
-  function handleChangeSelic(value: number): void {
-    storeSelic(value);
+  function handleChangeDi(value: number): void {
+    storeDi(value);
   }
 
   return (
@@ -40,10 +40,10 @@ export default function ThirdPartyData(): ReactElement {
             allowDecimal
           />
           <InputNumber
-            inputId="selicInput"
-            label="Selic"
-            value={yearlySelic}
-            onChange={handleChangeSelic}
+            inputId="diInput"
+            label="Taxa DI (CDI)"
+            value={yearlyDi}
+            onChange={handleChangeDi}
             allowDecimal
           />
         </>
