@@ -44,4 +44,14 @@
       background-color: transparent;
     }
   }
+
+  &--disabled {
+    border-color: $color-gray;
+    color: $color-gray;
+
+    &:hover {
+      background-color: transparent;
+      border-color: $color-gray;
+    }
+  }
 }

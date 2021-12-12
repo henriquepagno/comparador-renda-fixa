@@ -9,6 +9,7 @@ import { useThirdParty } from '../hookStore/ThirdParty';
 import { useInformation } from '../hookStore/Information';
 import { useChart } from '../hookStore/Chart';
 import { useModal } from '../hookStore/Modal';
+import { useToast } from '../hookStore/Toast';
 
 import ThirdPartyData from '../components/ThirdPartyData';
 import ConfigurationAmount from '../components/ConfigurationAmount';
@@ -33,6 +34,7 @@ const Home: NextPage = () => {
   } = useInformation();
   const { storeLoading, storeChartData } = useChart();
   const { storeInvestmentOptionModalVisible } = useModal();
+  const { addToast } = useToast();
 
   const options = investmentOptions.map(function (
     investment: IInvestmentOption
@@ -79,16 +81,24 @@ const Home: NextPage = () => {
 
         <Button
           className={
-            investmentOptions.length === 0
-              ? styles['add-button-animation']
-              : undefined
+            investmentOptions.length === 0 ? styles['add-button-animation'] : ''
           }
           label="Adicionar"
           onClick={() => {
-            storeInvestmentOptionModalVisible(true);
+            if (investmentOptions.length === 6) {
+              addToast({
+                title: 'Não permitido.',
+                description:
+                  'Não é possível adicionar mais de 6 tipos de investimento.',
+                type: 'info',
+              });
+            } else {
+              storeInvestmentOptionModalVisible(true);
+            }
           }}
           type="secondary"
           icon={<IoIosAdd />}
+          disabled={investmentOptions.length === 6}
         />
 
         <Button label="Calcular" onClick={getCalculateData} type="primary" />

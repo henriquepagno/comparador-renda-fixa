@@ -11,6 +11,7 @@ interface IButtonProps {
   type: 'primary' | 'secondary' | 'icon';
   className?: string;
   htmlType?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
 }
 
 export default function Button({
@@ -20,12 +21,14 @@ export default function Button({
   type,
   className,
   htmlType = 'button',
+  disabled = false,
 }: IButtonProps): ReactElement {
   const classes = clsx(
     styles['button'],
     type === 'primary' && styles['button--primary'],
     type === 'secondary' && styles['button--secondary'],
     type === 'icon' && styles['button--icon'],
+    disabled && styles['button--disabled'],
     className && className
   );
 

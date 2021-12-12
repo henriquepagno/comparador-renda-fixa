@@ -1,0 +1,77 @@
+@import '../../../styles/variables';
+@import '../../../styles/animations';
+
+.container {
+  width: 36rem;
+  position: relative;
+  padding: 1.6rem 3rem 1.6rem 1.6rem;
+  border-radius: $base-border-radius;
+  display: flex;
+  background-color: $color-background-toast;
+  transition: all 0.2s;
+
+  animation: appearFromRight 0.4s ease-out;
+
+  & + div {
+    margin-top: 0.8rem;
+  }
+
+  > svg {
+    margin: 0.4rem 1.2rem 0 0;
+  }
+
+  div {
+    flex: 1;
+  }
+
+  &--descriptionless {
+    align-items: center;
+
+    svg {
+      margin-top: 0;
+    }
+  }
+
+  &--remove {
+    animation: dissapearToRight 0.4s ease-out;
+  }
+}
+
+.title {
+  font-size: 1.4rem;
+}
+
+.description {
+  font-size: 1.2rem;
+  margin-top: 0.4rem;
+  line-height: 2rem;
+}
+
+.icon {
+  &--error {
+    fill: $color-red-toast;
+  }
+
+  &--info {
+    fill: $color-yellow-toast;
+  }
+
+  &--success {
+    fill: $color-green-toast;
+  }
+}
+
+.close-icon {
+  position: absolute;
+  right: 0.7rem;
+  top: 1.5rem;
+  opacity: 0.6;
+  border: 0;
+  background: transparent;
+  transition: $base-transition;
+  cursor: pointer;
+
+  &:hover {
+    fill: darken($color-text-dark, 10%);
+  }
+}
