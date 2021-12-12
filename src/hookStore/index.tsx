@@ -4,6 +4,7 @@ import { ThirdPartyProvider } from './ThirdParty';
 import { ChartProvider } from './Chart';
 import { InformationProvider } from './Information';
 import { ModalProvider } from './Modal';
+import { ToastProvider } from './Toast';
 
 interface AppProviderProps {
   children: ReactNode;
@@ -16,7 +17,9 @@ export default function AppProvider({
     <ThirdPartyProvider>
       <ChartProvider>
         <InformationProvider>
-          <ModalProvider>{children}</ModalProvider>
+          <ToastProvider>
+            <ModalProvider>{children}</ModalProvider>
+          </ToastProvider>
         </InformationProvider>
       </ChartProvider>
     </ThirdPartyProvider>
