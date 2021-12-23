@@ -1,6 +1,5 @@
 import React, { ReactElement, useState } from 'react';
 import { Form } from 'antd';
-import ShortUniqueId from 'short-unique-id';
 
 import Modal from '../Modal';
 import Header from './Header';
@@ -12,29 +11,46 @@ import InputNumber from '../InputNumber';
 
 import { useModal } from '../../hookStore/Modal';
 import { useInformation } from '../../hookStore/Information';
+import { useToast } from '../../hookStore/Toast';
 
 import styles from './InvestmentOptionModal.module.scss';
 
 export default function InvestmentOptionModal(): ReactElement {
   const { isInvestmentOptionModalVisible, storeInvestmentOptionModalVisible } =
     useModal();
-  const { addInvestmentOption } = useInformation();
+  const { addInvestmentOption, investmentOptions } = useInformation();
+  const { addToast } = useToast();
 
   const [form] = Form.useForm();
 
   const onFinish = (values: any) => {
-    const uid = new ShortUniqueId({ length: 3 });
+    const category = values.category.value;
+    const { type, interest } = values;
 
-    addInvestmentOption({
-      id: uid(),
-      category: values.category.value,
-      type: values.type,
-      interest: values.interest,
-      color: '',
-    });
+    if (
+      investmentOptions.findIndex(
+        (inv) =>
+          inv.category === category &&
+          inv.type === type &&
+          inv.interest === interest
+      ) >= 0
+    ) {
+      addToast({
+        title: 'Não permitido.',
+        description:
+          'Já existe uma opção de investimento com as mesmas informações.',
+        type: 'info',
+      });
+    } else {
+      addInvestmentOption({
+        category: category,
+        type: type,
+        interest: interest,
+      });
 
-    storeInvestmentOptionModalVisible(false);
-    form.resetFields();
+      storeInvestmentOptionModalVisible(false);
+      form.resetFields();
+    }
   };
 
   const onFinishFailed = (errorInfo: any) => {

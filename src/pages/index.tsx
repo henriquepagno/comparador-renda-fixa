@@ -89,7 +89,7 @@ const Home: NextPage = () => {
               addToast({
                 title: 'Não permitido.',
                 description:
-                  'Não é possível adicionar mais de 6 tipos de investimento.',
+                  'Não é possível adicionar mais de seis tipos de investimento.',
                 type: 'info',
               });
             } else {
