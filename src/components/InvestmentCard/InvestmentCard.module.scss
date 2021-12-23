@@ -56,11 +56,11 @@
 
 .attributes {
   display: grid;
-  grid-template-columns: repeat(3, minmnax(min-content, 1fr));
+  grid-template-columns: repeat(2, minmnax(min-content, 1fr));
   grid-column-gap: 0.4rem;
   justify-content: space-evenly;
 
-  grid-template-areas: 'category type interest';
+  grid-template-areas: 'type interest';
 
   font-weight: 700;
 
@@ -80,7 +80,7 @@
 
   &__net-yield {
     margin-top: 0.5rem;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 600;
   }
 }

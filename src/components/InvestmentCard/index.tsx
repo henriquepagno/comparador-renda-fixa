@@ -2,11 +2,13 @@ import React, { ReactElement } from 'react';
 import clsx from 'clsx';
 import { AiOutlineDelete } from 'react-icons/ai';
 
-import Tag from '../Tag';
+import getDescriptionType from '../../common/functions/getDescriptionType';
 
-import styles from './InvestmentCard.module.scss';
+import Tag from '../Tag';
 import Medal from '../Medal';
 import Button from '../Button';
+
+import styles from './InvestmentCard.module.scss';
 
 interface IInvestmentCard {
   id: string;
@@ -23,7 +25,6 @@ interface IInvestmentCard {
 }
 
 export default function InvestmentCard({
-  id,
   category,
   type,
   interest,
@@ -40,21 +41,7 @@ export default function InvestmentCard({
     styles[`container--${color.toLowerCase()}`]
   );
 
-  let typeDescription;
-
-  switch (type) {
-    case 'PRE':
-      typeDescription = 'Pré';
-      break;
-    case 'POS_CDI':
-      typeDescription = 'Pós CDI';
-      break;
-    case 'POS_IPCA':
-      typeDescription = 'Pós IPCA';
-      break;
-    default:
-      break;
-  }
+  const typeDescription = getDescriptionType(type);
 
   const percentFormatOption = {
     style: 'percent',
@@ -95,10 +82,9 @@ export default function InvestmentCard({
       />
       <Medal ranking={ranking || 0} />
       <div className={styles['tag-container']}>
-        <Tag description={id} color={color} />
+        <Tag description={category} color={color} />
       </div>
       <div className={styles['attributes']}>
-        <p title={category}>{category}</p>
         <p title={typeDescription}>{typeDescription}</p>
         <p title={interest.toString()}>{formattedInterest}</p>
       </div>

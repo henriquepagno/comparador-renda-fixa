@@ -9,7 +9,9 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+
 import { getColor } from '../../common/functions/color';
+import getDescriptionType from '../../common/functions/getDescriptionType';
 
 import { useChart } from '../../hookStore/Chart';
 import { useInformation } from '../../hookStore/Information';
@@ -30,7 +32,7 @@ export default function Chart(): ReactElement {
           <NoChartData />
         ) : (
           <>
-            <ResponsiveContainer width="100%" height="95%">
+            <ResponsiveContainer width="100%" height="95%" debounce={1}>
               <LineChart
                 data={chartData}
                 margin={{
@@ -44,7 +46,7 @@ export default function Chart(): ReactElement {
                 <XAxis dataKey="name" />
                 <YAxis domain={['auto', 'auto']} />
                 <Tooltip />
-                <Legend wrapperStyle={{ bottom: -5 }} />
+                <Legend />
                 <Line
                   type="monotone"
                   dataKey="IPCA"
@@ -63,6 +65,9 @@ export default function Chart(): ReactElement {
                       key={index}
                       type="monotone"
                       dataKey={investment.id}
+                      name={`${investment.category} ${getDescriptionType(
+                        investment.type
+                      )} ${investment.interest}%`}
                       stroke={getColor(investment.color)}
                       legendType="diamond"
                       strokeWidth={investment.shouldHighlight ? 4 : 2}
@@ -72,8 +77,8 @@ export default function Chart(): ReactElement {
               </LineChart>
             </ResponsiveContainer>
             <p className={styles['ir-message']}>
-              <sup>*</sup> Uma queda do investimento no gráfico indica o
-              pagamento de Imposto de Renda.
+              <sup>*</sup> Uma queda do investimento no gráfico indica a dedução
+              de Imposto de Renda.
             </p>
           </>
         )}

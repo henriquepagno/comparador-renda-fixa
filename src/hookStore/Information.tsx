@@ -6,6 +6,7 @@ import React, {
   ReactElement,
   ReactNode,
 } from 'react';
+import ShortUniqueId from 'short-unique-id';
 
 import { assignColor } from '../common/functions/color';
 
@@ -20,8 +21,10 @@ interface InformationContextData {
   storeMonths(months: number): void;
   // eslint-disable-next-line no-unused-vars
   storeAmountInvested(amount: number): void;
-  // eslint-disable-next-line no-unused-vars
-  addInvestmentOption(investmentOption: IInvestmentOption): void;
+  addInvestmentOption(
+    // eslint-disable-next-line no-unused-vars
+    investmentOption: Omit<IInvestmentOption, 'id' | 'color'>
+  ): void;
   // eslint-disable-next-line no-unused-vars
   removeInvestmentOption(investmentId: string): void;
   // eslint-disable-next-line no-unused-vars
@@ -59,6 +62,10 @@ export function InformationProvider({
   const addInvestmentOption = useCallback(
     (investmentOption: IInvestmentOption) => {
       if (investmentOptions.length < 6) {
+        const uid = new ShortUniqueId({ length: 3 });
+
+        investmentOption.id = uid();
+
         investmentOption.color = assignColor(investmentOptions) as
           | 'pink'
           | 'red'
