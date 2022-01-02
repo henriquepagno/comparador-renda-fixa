@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import InputNumber from '../InputNumber';
+import NumberField from '../NumberField';
 
 import { useInformation } from '../../hookStore/Information';
 
@@ -15,15 +15,13 @@ export default function ConfigurationAmount(): ReactElement {
 
   return (
     <div className={styles['amount']}>
-      <InputNumber
+      <NumberField
         inputId="amount"
         label="Valor Investido"
         value={amountInvested}
-        step="1"
-        min={1}
+        format="0.0,[00]"
         onChange={handleChangeAmount}
-        currency
-        allowDecimal
+        startLabel="R$"
       />
     </div>
   );

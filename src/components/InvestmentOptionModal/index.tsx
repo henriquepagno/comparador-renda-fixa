@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useCallback, useState } from 'react';
 import { Form } from 'antd';
 
 import Modal from '../Modal';
@@ -7,11 +7,14 @@ import Footer from './Footer';
 
 import CategorySelect from '../CategorySelect';
 import TypeRadio from '../TypeRadio';
-import InputNumber from '../InputNumber';
+import NumberField from '../NumberField';
+
+import { percentFormatter } from '../..//common/functions/intlFormatters';
 
 import { useModal } from '../../hookStore/Modal';
 import { useInformation } from '../../hookStore/Information';
 import { useToast } from '../../hookStore/Toast';
+import { useThirdParty } from '../../hookStore/ThirdParty';
 
 import styles from './InvestmentOptionModal.module.scss';
 
@@ -20,6 +23,8 @@ export default function InvestmentOptionModal(): ReactElement {
     useModal();
   const { addInvestmentOption, investmentOptions } = useInformation();
   const { addToast } = useToast();
+  const { yearlyDi, yearlyIpca } = useThirdParty();
+  const [formType, setFormType] = useState('PRE');
 
   const [form] = Form.useForm();
 
@@ -49,6 +54,7 @@ export default function InvestmentOptionModal(): ReactElement {
       });
 
       storeInvestmentOptionModalVisible(false);
+      setFormType('PRE');
       form.resetFields();
     }
   };
@@ -59,10 +65,32 @@ export default function InvestmentOptionModal(): ReactElement {
 
   const onCancel = () => {
     storeInvestmentOptionModalVisible(false);
+    setFormType('PRE');
     form.resetFields();
   };
 
   const [interest, setInterest] = useState(0);
+
+  const getTypeDescription = useCallback(() => {
+    switch (formType) {
+      case 'PRE':
+        return null;
+      case 'POS_CDI':
+        return (
+          <span className={styles['type-description']} title="Taxa DI">
+            + {percentFormatter.format(yearlyDi / 100)}
+          </span>
+        );
+      case 'POS_IPCA':
+        return (
+          <span className={styles['type-description']} title="Taxa IPCA">
+            + {percentFormatter.format(yearlyIpca / 100)}
+          </span>
+        );
+      default:
+        break;
+    }
+  }, [formType, yearlyDi, yearlyIpca]);
 
   return (
     <Modal
@@ -84,6 +112,7 @@ export default function InvestmentOptionModal(): ReactElement {
             type: 'PRE',
             interest: 1,
           }}
+          onValuesChange={({ type }) => type && setFormType(type)}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
@@ -91,16 +120,20 @@ export default function InvestmentOptionModal(): ReactElement {
         >
           <CategorySelect />
           <TypeRadio />
-          <Form.Item name="interest">
-            <InputNumber
-              inputId="taxaInput"
-              label="Taxa"
-              allowDecimal
-              value={interest}
-              onChange={(e) => setInterest(e)}
-              min={0.1}
-            />
-          </Form.Item>
+          <div className={styles['interest-content']}>
+            <Form.Item name="interest">
+              <NumberField
+                inputId="taxaInput"
+                label="Taxa"
+                value={interest}
+                minValue={0.1}
+                onChange={(e) => setInterest(e)}
+                format="0.00"
+                endLabel="%"
+              />
+            </Form.Item>
+            {getTypeDescription()}
+          </div>
         </Form>
       </div>
       <Footer onCancel={onCancel} form={form} />

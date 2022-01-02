@@ -3,8 +3,8 @@ import React, { useEffect, ReactElement } from 'react';
 import useThirdPartyData from '../../hooks/useThirdPartyData';
 import { useThirdParty } from '../../hookStore/ThirdParty';
 
-import InputNumber from '../InputNumber';
 import LoadingData from '../LoadingData';
+import NumberField from '../NumberField';
 
 import styles from './ThirdPartyData.module.scss';
 
@@ -32,19 +32,21 @@ export default function ThirdPartyData(): ReactElement {
     <div className={styles['third-party-data']}>
       <LoadingData loading={isLoading}>
         <>
-          <InputNumber
+          <NumberField
             inputId="ipcaInput"
             label="IPCA"
             value={yearlyIpca}
             onChange={handleChangeIpca}
-            allowDecimal
+            format="0.00"
+            endLabel="%"
           />
-          <InputNumber
+          <NumberField
             inputId="diInput"
             label="Taxa DI (CDI)"
             value={yearlyDi}
             onChange={handleChangeDi}
-            allowDecimal
+            format="0.00"
+            endLabel="%"
           />
         </>
       </LoadingData>

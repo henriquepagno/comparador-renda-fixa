@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
+import numeral from 'numeral';
+import 'numeral/locales/pt-br';
 
 import Layout from '../layout';
 
@@ -8,6 +10,8 @@ import AppProvider from '../hookStore';
 import '../styles/globals.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  numeral.locale('pt-br');
+
   return (
     <AppProvider>
       <Head>

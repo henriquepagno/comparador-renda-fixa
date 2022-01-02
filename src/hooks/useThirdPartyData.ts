@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
 import api from '../services/api';
@@ -21,11 +22,17 @@ interface IThirdPartyData {
 export default function useThirdPartyData(): IThirdPartyData {
   const { data, error } = useSWR<IThirdPartyData>('third-party/', fetcher);
 
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(!error && !data);
+  }, [error, data]);
+
   return {
     successful: data?.successful,
     data: data?.data,
     error: data?.error,
-    isLoading: !error && !data,
+    isLoading: isLoading,
     isError: error,
   };
 }
