@@ -1,6 +1,6 @@
 import React, { ReactElement, useMemo } from 'react';
 
-import InputNumber from '../InputNumber';
+import NumberField from '../NumberField';
 
 import { useInformation } from '../../hookStore/Information';
 
@@ -34,14 +34,13 @@ export default function ConfigurationMonths(): ReactElement {
 
   return (
     <div className={styles['months']}>
-      <InputNumber
+      <NumberField
         inputId="months"
         label="Meses de Investimento"
-        value={months ? months : 0}
-        step="1"
-        min={1}
-        max={120}
+        value={months}
         onChange={handleChangeMonths}
+        minValue={1}
+        maxValue={120}
       />
       <span>{monthsAsYear}</span>
     </div>

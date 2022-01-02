@@ -1,0 +1,71 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+$internal-label-width: 2.5rem;
+$input-width: 15rem;
+
+.label {
+  @include label;
+}
+
+@mixin input-label {
+  display: flex;
+  font-size: 1.2rem;
+  font-weight: 600;
+  align-self: center;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  grid-column-gap: 0rem;
+  justify-content: space-evenly;
+  display: flex;
+  overflow: hidden;
+  width: min-content;
+
+  grid-template-areas: 'start input end';
+
+  border-radius: $base-border-radius;
+  border: none;
+
+  background-color: $color-background-input;
+}
+
+.label-container {
+  display: flex;
+  justify-content: center;
+  background-color: $color-background-input-label;
+  padding: 0 0.5rem;
+  min-width: $internal-label-width;
+}
+
+.input {
+  grid-area: input;
+  padding: 1rem 1rem;
+  border: none;
+  background-color: $color-background-input;
+  width: calc(#{$internal-label-width} + #{$input-width});
+  transition: $base-transition;
+
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+
+  &--has-label {
+    width: $input-width;
+  }
+
+  &:focus {
+    border-bottom: 1px solid $color-gray;
+  }
+}
+
+.start-label {
+  grid-area: start;
+  @include input-label;
+}
+
+.end-label {
+  grid-area: end;
+  @include input-label;
+}

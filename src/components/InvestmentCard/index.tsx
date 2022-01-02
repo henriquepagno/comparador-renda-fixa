@@ -3,6 +3,10 @@ import clsx from 'clsx';
 import { AiOutlineDelete } from 'react-icons/ai';
 
 import getDescriptionType from '../../common/functions/getDescriptionType';
+import {
+  percentFormatter,
+  currencyFormatter,
+} from '../..//common/functions/intlFormatters';
 
 import Tag from '../Tag';
 import Medal from '../Medal';
@@ -43,23 +47,10 @@ export default function InvestmentCard({
 
   const typeDescription = getDescriptionType(type);
 
-  const percentFormatOption = {
-    style: 'percent',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  };
-  const percentFormatter = new Intl.NumberFormat('pt-BR', percentFormatOption);
   const formattedInterest = percentFormatter.format(interest / 100);
 
-  const valueFormatOption = {
-    style: 'currency',
-    currency: 'BRL',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  };
-  const valueFormatter = new Intl.NumberFormat('pt-BR', valueFormatOption);
-  const formattedgrossYield = valueFormatter.format(grossYield || 0);
-  const formattednetYield = valueFormatter.format(netYield || 0);
+  const formattedgrossYield = currencyFormatter.format(grossYield || 0);
+  const formattednetYield = currencyFormatter.format(netYield || 0);
 
   return (
     <div
