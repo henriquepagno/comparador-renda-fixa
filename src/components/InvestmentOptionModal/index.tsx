@@ -25,12 +25,13 @@ export default function InvestmentOptionModal(): ReactElement {
   const { addToast } = useToast();
   const { yearlyDi, yearlyIpca } = useThirdParty();
   const [formType, setFormType] = useState('PRE');
+  const [interest, setInterest] = useState(1);
 
   const [form] = Form.useForm();
 
   const onFinish = (values: any) => {
     const category = values.category.value;
-    const { type, interest } = values;
+    const { type } = values;
 
     if (
       investmentOptions.findIndex(
@@ -70,8 +71,6 @@ export default function InvestmentOptionModal(): ReactElement {
     setFormType('PRE');
     form.resetFields();
   };
-
-  const [interest, setInterest] = useState(0);
 
   const getTypeDescription = useCallback(() => {
     switch (formType) {
