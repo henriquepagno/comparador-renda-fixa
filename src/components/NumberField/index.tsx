@@ -18,6 +18,8 @@ interface INumberField {
   format?: string;
   // eslint-disable-next-line no-unused-vars
   onChange(e: number): void;
+  // eslint-disable-next-line no-unused-vars
+  onBlur?(e: number): void;
   startLabel?: string;
   endLabel?: string;
 }
@@ -30,6 +32,7 @@ export default function NumberField({
   maxValue = 999999999999999,
   format,
   onChange,
+  onBlur,
   startLabel,
   endLabel,
 }: INumberField): ReactElement {
@@ -131,7 +134,9 @@ export default function NumberField({
       setInternalValue(getFormattedInternalValue(internalValue));
 
       const rawValue = getRawValue(internalValue);
-      rawValue !== null && onChange(rawValue);
+      if (rawValue !== null) {
+        onBlur ? onBlur(rawValue) : onChange(rawValue);
+      }
     } else {
       let value = Number(e.currentTarget.value);
 
