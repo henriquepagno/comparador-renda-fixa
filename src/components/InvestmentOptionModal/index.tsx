@@ -54,6 +54,7 @@ export default function InvestmentOptionModal(): ReactElement {
       });
 
       storeInvestmentOptionModalVisible(false);
+      setInterest(1);
       setFormType('PRE');
       form.resetFields();
     }
@@ -65,6 +66,7 @@ export default function InvestmentOptionModal(): ReactElement {
 
   const onCancel = () => {
     storeInvestmentOptionModalVisible(false);
+    setInterest(1);
     setFormType('PRE');
     form.resetFields();
   };
@@ -78,7 +80,7 @@ export default function InvestmentOptionModal(): ReactElement {
       case 'POS_CDI':
         return (
           <span className={styles['type-description']} title="Taxa DI">
-            + {percentFormatter.format(yearlyDi / 100)}
+            &rarr; {percentFormatter.format((yearlyDi * interest) / 100 / 100)}
           </span>
         );
       case 'POS_IPCA':
@@ -90,7 +92,7 @@ export default function InvestmentOptionModal(): ReactElement {
       default:
         break;
     }
-  }, [formType, yearlyDi, yearlyIpca]);
+  }, [formType, yearlyDi, yearlyIpca, interest]);
 
   return (
     <Modal
@@ -127,7 +129,8 @@ export default function InvestmentOptionModal(): ReactElement {
                 label="Taxa"
                 value={interest}
                 minValue={0.1}
-                onChange={(e) => setInterest(e)}
+                onChange={() => {}}
+                onBlur={(e) => setInterest(e)}
                 format="0.00"
                 endLabel="%"
               />
