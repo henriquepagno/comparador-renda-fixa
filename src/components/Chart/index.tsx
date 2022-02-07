@@ -12,6 +12,8 @@ import {
 
 import { getColor } from '../../common/functions/color';
 import getDescriptionType from '../../common/functions/getDescriptionType';
+import { currencyFormatter } from '../../common/functions/intlFormatters';
+import { IChartData } from '../../common/interfaces/calculated-data';
 
 import { useChart } from '../../hookStore/Chart';
 import { useInformation } from '../../hookStore/Information';
@@ -25,6 +27,27 @@ export default function Chart(): ReactElement {
   const { loading, chartData } = useChart();
   const { investmentOptions } = useInformation();
 
+  const calculateLeftMargin = (): number => {
+    if (!chartData || chartData.length === 0) return 0;
+
+    const lastPosition: IChartData = chartData.at(-1) as IChartData;
+    let higherNumber = 0;
+
+    Object.values(lastPosition).forEach((value) => {
+      if (typeof value === 'number') {
+        higherNumber = value > higherNumber ? value : higherNumber;
+      }
+    });
+
+    const width = higherNumber.toString().length;
+
+    let modifier = 6;
+
+    if (width > 11) modifier = 7;
+
+    return width * modifier;
+  };
+
   return (
     <div className={styles['chart']}>
       <LoadingData loading={loading}>
@@ -32,20 +55,30 @@ export default function Chart(): ReactElement {
           <NoChartData />
         ) : (
           <>
-            <ResponsiveContainer width="100%" height="95%" debounce={1}>
+            <ResponsiveContainer
+              width="100%"
+              height="95%"
+              debounce={1}
+              className={styles['responsive-chart']}
+            >
               <LineChart
                 data={chartData}
                 margin={{
                   top: 15,
                   right: 25,
-                  left: -10,
+                  left: calculateLeftMargin(),
                   bottom: 5,
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
-                <YAxis domain={['auto', 'auto']} />
-                <Tooltip />
+                <YAxis
+                  domain={['auto', 'auto']}
+                  tickFormatter={(tick) => currencyFormatter.format(tick)}
+                />
+                <Tooltip
+                  formatter={(value: number) => currencyFormatter.format(value)}
+                />
                 <Legend />
                 <Line
                   type="monotone"

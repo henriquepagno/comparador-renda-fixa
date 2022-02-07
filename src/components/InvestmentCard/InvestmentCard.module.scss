@@ -11,6 +11,7 @@
   background-color: $color-background-input;
   animation: appear 1s ease-out;
   transition: $base-transition;
+  overflow: hidden;
 
   &:hover {
     transform: scale(1.05);

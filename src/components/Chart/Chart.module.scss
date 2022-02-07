@@ -19,3 +19,14 @@
   margin-left: 2rem;
   font-size: 1.1rem;
 }
+
+.responsive-chart {
+  [class~='recharts-wrapper'] {
+    [class~='recharts-tooltip-wrapper'] {
+      [class~='recharts-default-tooltip'] {
+        background-color: $color-background-input !important;
+        border-color: $color-gray !important;
+      }
+    }
+  }
+}
