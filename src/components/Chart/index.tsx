@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useCallback } from 'react';
 import {
   LineChart,
   Line,
@@ -27,7 +27,7 @@ export default function Chart(): ReactElement {
   const { loading, chartData } = useChart();
   const { investmentOptions } = useInformation();
 
-  const calculateLeftMargin = (): number => {
+  const calculateLeftMargin = useCallback((): number => {
     if (!chartData || chartData.length === 0) return 0;
 
     const lastPosition: IChartData = chartData.at(-1) as IChartData;
@@ -46,7 +46,7 @@ export default function Chart(): ReactElement {
     if (width > 11) modifier = 7;
 
     return width * modifier;
-  };
+  }, [chartData]);
 
   return (
     <div className={styles['chart']}>
