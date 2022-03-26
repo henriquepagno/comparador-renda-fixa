@@ -1,4 +1,4 @@
-import React, { useState, ReactElement, ReactNode } from 'react';
+import React, { useState, ReactElement, ReactNode, useEffect } from 'react';
 import clsx from 'clsx';
 
 import styles from './Switch.module.scss';
@@ -8,14 +8,16 @@ interface ISwitch {
   checkedIcon?: ReactNode;
   // eslint-disable-next-line no-unused-vars
   handleSwitchClick(e: boolean): void;
+  value: boolean;
 }
 
 export default function Switch({
   uncheckedIcon,
   checkedIcon,
   handleSwitchClick,
+  value,
 }: ISwitch): ReactElement {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(value);
 
   const uncheckedIconClasses = clsx(
     styles['icon'],
@@ -33,9 +35,12 @@ export default function Switch({
   );
 
   const handleClick = () => {
-    setChecked(!checked);
     handleSwitchClick(!checked);
   };
+
+  useEffect(() => {
+    setChecked(value);
+  }, [value]);
 
   return (
     <div className={styles['container']} onClick={handleClick}>

@@ -10,6 +10,8 @@ import React, {
 import { GraphType } from '../common/enums/GraphType';
 import { IChartData } from '../common/interfaces/calculated-data';
 
+import usePersistedState from '../hooks/usePersistedState';
+
 interface ChartContextData {
   loading: boolean;
   chartData: IChartData[];
@@ -31,7 +33,10 @@ const ChartContext = createContext<ChartContextData>({} as ChartContextData);
 export function ChartProvider({ children }: ChartProviderProps): ReactElement {
   const [loading, setLoading] = useState(false);
   const [chartData, setChartData] = useState<IChartData[]>([]);
-  const [graphType, setGraphType] = useState<GraphType>(GraphType.Line);
+  const [graphType, setGraphType] = usePersistedState<GraphType>(
+    GraphType.Line,
+    'comparador-rf/graph-type'
+  );
 
   const storeLoading = useCallback((loading: boolean) => {
     setLoading(loading);
@@ -41,10 +46,12 @@ export function ChartProvider({ children }: ChartProviderProps): ReactElement {
     setChartData(chartData);
   }, []);
 
-  const storeGraphType = useCallback((graphType: GraphType) => {
-    console.log('storeGraphType', graphType);
-    setGraphType(graphType);
-  }, []);
+  const storeGraphType = useCallback(
+    (graphType: GraphType) => {
+      setGraphType(graphType);
+    },
+    [setGraphType]
+  );
 
   return (
     <ChartContext.Provider

@@ -53,18 +53,6 @@ const Home: NextPage = () => {
     };
   });
 
-  // const requestData = useMemo(
-  //   () => ({
-  //     yearlyIpca,
-  //     yearlyDi,
-  //     amountInvested,
-  //     monthsDuration: months,
-  //     options: options,
-  //     type: graphType === GraphType.Line ? 'line' : 'bar',
-  //   }),
-  //   [amountInvested, graphType, months, options, yearlyDi, yearlyIpca]
-  // );
-
   async function getCalculateData(graphType: 'bar' | 'line'): Promise<void> {
     const requestData = {
       yearlyIpca,
@@ -175,6 +163,7 @@ const Home: NextPage = () => {
             uncheckedIcon={<GoGraph size={16} />}
             checkedIcon={<BsGraphUp size={16} />}
             handleSwitchClick={handleGraphTypeSwitch}
+            value={graphType === GraphType.Bar ? true : false}
           />
         </div>
 
