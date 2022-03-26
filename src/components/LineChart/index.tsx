@@ -1,6 +1,6 @@
 import React, { ReactElement, useCallback } from 'react';
 import {
-  LineChart,
+  LineChart as LineChartRecharts,
   Line,
   XAxis,
   YAxis,
@@ -21,9 +21,9 @@ import { useInformation } from '../../hookStore/Information';
 import LoadingData from '../LoadingData';
 import NoChartData from '../NoChartData';
 
-import styles from './Chart.module.scss';
+import styles from './LineChart.module.scss';
 
-export default function Chart(): ReactElement {
+export default function LineChart(): ReactElement {
   const { loading, chartData } = useChart();
   const { investmentOptions } = useInformation();
 
@@ -61,7 +61,7 @@ export default function Chart(): ReactElement {
               debounce={1}
               className={styles['responsive-chart']}
             >
-              <LineChart
+              <LineChartRecharts
                 data={chartData}
                 margin={{
                   top: 15,
@@ -107,7 +107,7 @@ export default function Chart(): ReactElement {
                     />
                   );
                 })}
-              </LineChart>
+              </LineChartRecharts>
             </ResponsiveContainer>
             <p className={styles['ir-message']}>
               <sup>*</sup> Uma queda do investimento no gráfico indica a dedução

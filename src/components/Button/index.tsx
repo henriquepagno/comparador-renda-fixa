@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import clsx from 'clsx';
 
 import styles from './Button.module.scss';
@@ -7,7 +7,7 @@ interface IButtonProps {
   label: string;
   // eslint-disable-next-line no-unused-vars
   onClick(): void;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   type: 'primary' | 'secondary' | 'icon';
   className?: string;
   htmlType?: 'button' | 'submit' | 'reset';

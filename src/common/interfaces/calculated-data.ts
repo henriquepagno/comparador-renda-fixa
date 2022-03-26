@@ -2,6 +2,7 @@ export interface IChartData {
   name: string | number;
   CDI: number;
   IPCA: number;
+  id: string | number;
   [x: string]: string | number;
 }
 

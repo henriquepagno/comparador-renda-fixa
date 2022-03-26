@@ -24,6 +24,25 @@
   margin-bottom: 1.5rem;
 }
 
+.graph {
+  grid-area: calculated-data;
+
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  grid-row-gap: 1rem;
+
+  grid-template-areas:
+    'graph-config'
+    'graph-content';
+
+  margin-bottom: 1.5rem;
+}
+
+.graph-config {
+  grid-area: graph-config;
+  display: flex;
+}
+
 .add-button-animation {
   backface-visibility: hidden;
   animation: pulse 5s infinite;

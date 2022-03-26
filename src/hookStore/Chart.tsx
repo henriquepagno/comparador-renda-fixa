@@ -7,15 +7,19 @@ import React, {
   ReactNode,
 } from 'react';
 
+import { GraphType } from '../common/enums/GraphType';
 import { IChartData } from '../common/interfaces/calculated-data';
 
 interface ChartContextData {
   loading: boolean;
   chartData: IChartData[];
+  graphType: GraphType;
   // eslint-disable-next-line no-unused-vars
   storeLoading(loading: boolean): void;
   // eslint-disable-next-line no-unused-vars
   storeChartData(chartData: IChartData[]): void;
+  // eslint-disable-next-line no-unused-vars
+  storeGraphType(graphType: GraphType): void;
 }
 
 interface ChartProviderProps {
@@ -27,6 +31,7 @@ const ChartContext = createContext<ChartContextData>({} as ChartContextData);
 export function ChartProvider({ children }: ChartProviderProps): ReactElement {
   const [loading, setLoading] = useState(false);
   const [chartData, setChartData] = useState<IChartData[]>([]);
+  const [graphType, setGraphType] = useState<GraphType>(GraphType.Line);
 
   const storeLoading = useCallback((loading: boolean) => {
     setLoading(loading);
@@ -36,13 +41,20 @@ export function ChartProvider({ children }: ChartProviderProps): ReactElement {
     setChartData(chartData);
   }, []);
 
+  const storeGraphType = useCallback((graphType: GraphType) => {
+    console.log('storeGraphType', graphType);
+    setGraphType(graphType);
+  }, []);
+
   return (
     <ChartContext.Provider
       value={{
         loading,
         chartData,
+        graphType,
         storeLoading,
         storeChartData,
+        storeGraphType,
       }}
     >
       {children}

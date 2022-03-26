@@ -1,0 +1,32 @@
+@import '../../styles/variables';
+
+.chart {
+  grid-area: graph-content;
+  background-color: $color-background-input;
+  border-radius: $base-border-radius;
+
+  width: 100%;
+  height: 95%;
+
+  font-size: 1.2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.ir-message {
+  margin-left: 2rem;
+  font-size: 1.1rem;
+}
+
+.responsive-chart {
+  [class~='recharts-wrapper'] {
+    [class~='recharts-tooltip-wrapper'] {
+      [class~='recharts-default-tooltip'] {
+        background-color: $color-background-input !important;
+        border-color: $color-gray !important;
+      }
+    }
+  }
+}
