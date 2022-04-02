@@ -1,7 +1,10 @@
 import type { NextPage } from 'next';
 import { IoIosAdd } from 'react-icons/io';
+import { BsGraphUp } from 'react-icons/bs';
+import { GoGraph } from 'react-icons/go';
 
 import { ICalculatedData } from '../common/interfaces/calculated-data';
+import { IInvestmentOption } from '../common/interfaces/investment-option';
 
 import api from '../services/api';
 
@@ -15,11 +18,13 @@ import ThirdPartyData from '../components/ThirdPartyData';
 import ConfigurationAmount from '../components/ConfigurationAmount';
 import ConfigurationMonths from '../components/ConfigurationMonths';
 import Button from '../components/Button';
-import Chart from '../components/Chart';
+import LineChart from '../components/LineChart';
+import BarChart from '../components/BarChart';
+import InvestmentCard from '../components/InvestmentCard';
+import Switch from '../components/Switch';
 
 import styles from '../styles/pages/Home.module.scss';
-import { IInvestmentOption } from '../common/interfaces/investment-option';
-import InvestmentCard from '../components/InvestmentCard';
+import { GraphType } from '../common/enums/GraphType';
 
 const Home: NextPage = () => {
   const { yearlyIpca, yearlyDi } = useThirdParty();
@@ -32,7 +37,8 @@ const Home: NextPage = () => {
     hightlightInvestmentOption,
     unhightlightInvestmentOption,
   } = useInformation();
-  const { storeLoading, storeChartData } = useChart();
+  const { storeLoading, storeChartData, graphType, storeGraphType, chartData } =
+    useChart();
   const { storeInvestmentOptionModalVisible } = useModal();
   const { addToast } = useToast();
 
@@ -47,15 +53,16 @@ const Home: NextPage = () => {
     };
   });
 
-  const requestData = {
-    yearlyIpca,
-    yearlyDi,
-    amountInvested,
-    monthsDuration: months,
-    options: options,
-  };
+  async function getCalculateData(graphType: 'bar' | 'line'): Promise<void> {
+    const requestData = {
+      yearlyIpca,
+      yearlyDi,
+      amountInvested,
+      monthsDuration: months,
+      options: options,
+      type: graphType,
+    };
 
-  async function getCalculateData(): Promise<void> {
     storeLoading(true);
 
     const result = await api.post<ICalculatedData>('calculated-data/', {
@@ -70,6 +77,21 @@ const Home: NextPage = () => {
 
     storeLoading(false);
   }
+
+  const handleGraphTypeSwitch = async (checked: boolean): Promise<void> => {
+    let graphType: 'bar' | 'line';
+    if (checked) {
+      storeGraphType(GraphType.Bar);
+      graphType = 'bar';
+    } else {
+      storeGraphType(GraphType.Line);
+      graphType = 'line';
+    }
+
+    if (chartData.length > 0) {
+      await getCalculateData(graphType);
+    }
+  };
 
   return (
     <>
@@ -101,7 +123,13 @@ const Home: NextPage = () => {
           disabled={investmentOptions.length === 6}
         />
 
-        <Button label="Calcular" onClick={getCalculateData} type="primary" />
+        <Button
+          label="Calcular"
+          onClick={() => {
+            getCalculateData(graphType === GraphType.Line ? 'line' : 'bar');
+          }}
+          type="primary"
+        />
 
         {investmentOptions.map((investment) => {
           return (
@@ -129,7 +157,18 @@ const Home: NextPage = () => {
         })}
       </div>
 
-      <Chart />
+      <div className={styles['graph']}>
+        <div className={styles['graph-config']}>
+          <Switch
+            uncheckedIcon={<GoGraph size={16} />}
+            checkedIcon={<BsGraphUp size={16} />}
+            handleSwitchClick={handleGraphTypeSwitch}
+            value={graphType === GraphType.Bar ? true : false}
+          />
+        </div>
+
+        {graphType === GraphType.Line ? <LineChart /> : <BarChart />}
+      </div>
     </>
   );
 };

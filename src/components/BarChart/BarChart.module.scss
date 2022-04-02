@@ -1,7 +1,7 @@
 @import '../../styles/variables';
 
 .chart {
-  grid-area: calculated-data;
+  grid-area: graph-content;
   background-color: $color-background-input;
   border-radius: $base-border-radius;
 
@@ -13,11 +13,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-}
-
-.ir-message {
-  margin-left: 2rem;
-  font-size: 1.1rem;
 }
 
 .responsive-chart {
