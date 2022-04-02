@@ -41,7 +41,7 @@ export default function LineChart(): ReactElement {
 
     const width = higherNumber.toString().length;
 
-    let modifier = 6;
+    let modifier = 8;
 
     if (width > 11) modifier = 7;
 

@@ -86,7 +86,7 @@ export default function BarChart(): ReactElement {
       }
     });
 
-    let modifier = -6;
+    let modifier = -4;
 
     if (width <= 5) modifier = -20;
 
