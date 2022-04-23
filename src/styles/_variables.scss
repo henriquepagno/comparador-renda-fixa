@@ -1,3 +1,7 @@
+$base-transition: all 0.2s ease-out;
+
+$base-border-radius: 4px;
+
 //Colors
 $color-imperialRed: #ef233c;
 
@@ -15,12 +19,7 @@ $color-background: #161616;
 $color-background-input: #222222;
 $color-background-input-label: #2f2f2f;
 
-$shadow-dark-to-bottom: 0 0.5rem 2rem rgba(0, 0, 0, 0.3);
-$shadow-dark-to-top: 0 -0.5rem 2rem rgba(0, 0, 0, 0.3);
-
-$base-transition: all 0.2s ease-out;
-
-$base-border-radius: 4px;
+$base-shadow: 1px 2px 8px rgba(0, 0, 0, 0.3);
 
 //Toast colors
 $color-background-toast: #2c2c2c;
@@ -40,3 +39,11 @@ $investment-orange: #ffa726;
 $medal-gold: #ffd700;
 $medal-silver: #c0c0c0;
 $medal-bronze: #cd7f32;
+
+//Light Theme
+$light-theme-color-background: #dbdce1;
+$light-theme-color-text-light: #464646;
+$light-theme-color-text-dark: #2d3142;
+$light-theme-color-background-input: #f0f0f0;
+$light-theme-color-background-input-darker: #d7d9e0;
+$light-theme-color-background-input-label: #d6d6d6;

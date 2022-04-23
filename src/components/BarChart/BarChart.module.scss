@@ -13,15 +13,23 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+
+  &--light {
+    background-color: $light-theme-color-background-input;
+  }
 }
 
 .responsive-chart {
   [class~='recharts-wrapper'] {
     [class~='recharts-tooltip-wrapper'] {
       [class~='recharts-default-tooltip'] {
-        background-color: $color-background-input !important;
+        background-color: $color-gray-light !important;
         border-color: $color-gray !important;
       }
+    }
+
+    [class~='recharts-text'] {
+      fill: $light-theme-color-text-dark;
     }
   }
 }

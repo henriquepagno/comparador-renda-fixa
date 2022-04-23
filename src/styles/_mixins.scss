@@ -3,4 +3,8 @@
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 2px;
+
+  &--light {
+    color: $light-theme-color-text-light;
+  }
 }

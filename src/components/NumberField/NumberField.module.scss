@@ -30,6 +30,11 @@ $input-width: 15rem;
   border: none;
 
   background-color: $color-background-input;
+
+  &--light {
+    background-color: transparent;
+    color: $light-theme-color-text-light;
+  }
 }
 
 .label-container {
@@ -38,6 +43,10 @@ $input-width: 15rem;
   background-color: $color-background-input-label;
   padding: 0 0.5rem;
   min-width: $internal-label-width;
+
+  &--light {
+    background-color: $light-theme-color-background-input-label;
+  }
 }
 
 .input {
@@ -57,6 +66,15 @@ $input-width: 15rem;
 
   &:focus {
     border-bottom: 1px solid $color-gray;
+  }
+
+  &--light {
+    background-color: $light-theme-color-background-input;
+    color: $light-theme-color-text-dark;
+
+    &:focus {
+      border-bottom: 1px solid $color-primary;
+    }
   }
 }
 

@@ -15,6 +15,7 @@ import { useModal } from '../../hookStore/Modal';
 import { useInformation } from '../../hookStore/Information';
 import { useToast } from '../../hookStore/Toast';
 import { useThirdParty } from '../../hookStore/ThirdParty';
+import { useConfig } from '../../hookStore/Config';
 
 import styles from './InvestmentOptionModal.module.scss';
 
@@ -26,6 +27,13 @@ export default function InvestmentOptionModal(): ReactElement {
   const { yearlyDi, yearlyIpca } = useThirdParty();
   const [formType, setFormType] = useState('PRE');
   const [interest, setInterest] = useState(1);
+
+  const { getClassWithTheme } = useConfig();
+
+  const typeDescriptionClasses = getClassWithTheme(
+    styles['type-description'],
+    styles['type-description--light']
+  );
 
   const [form] = Form.useForm();
 
@@ -78,20 +86,20 @@ export default function InvestmentOptionModal(): ReactElement {
         return null;
       case 'POS_CDI':
         return (
-          <span className={styles['type-description']} title="Taxa DI">
+          <span className={typeDescriptionClasses} title="Taxa DI">
             &rarr; {percentFormatter.format((yearlyDi * interest) / 100 / 100)}
           </span>
         );
       case 'POS_IPCA':
         return (
-          <span className={styles['type-description']} title="Taxa IPCA">
+          <span className={typeDescriptionClasses} title="Taxa IPCA">
             + {percentFormatter.format(yearlyIpca / 100)}
           </span>
         );
       default:
         break;
     }
-  }, [formType, yearlyDi, yearlyIpca, interest]);
+  }, [formType, yearlyDi, yearlyIpca, interest, typeDescriptionClasses]);
 
   return (
     <Modal

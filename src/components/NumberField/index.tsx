@@ -6,6 +6,9 @@ import {
   parseValue,
   formatValue,
 } from '../../common/functions/numbers';
+import { Theme } from '../../common/enums/Theme';
+
+import { useConfig } from '../../hookStore/Config';
 
 import styles from './NumberField.module.scss';
 
@@ -41,11 +44,28 @@ export default function NumberField({
       ? getFormattedInternalValue(String(value).replace('.', ','))
       : String(value)
   );
+  const { theme } = useConfig();
+
+  const labelClasses = clsx(
+    styles['label'],
+    theme == Theme.Light && styles['label--light']
+  );
 
   const inputClasses = clsx(
     styles['input'],
     startLabel && styles['input--has-label'],
-    endLabel && styles['input--has-label']
+    endLabel && styles['input--has-label'],
+    theme == Theme.Light && styles['input--light']
+  );
+
+  const containerClasses = clsx(
+    styles['container'],
+    theme == Theme.Light && styles['container--light']
+  );
+
+  const labelContainerClasses = clsx(
+    styles['label-container'],
+    theme == Theme.Light && styles['label-container--light']
   );
 
   function validateValue(): boolean {
@@ -149,12 +169,12 @@ export default function NumberField({
 
   return (
     <div>
-      <label className={styles['label']} htmlFor={inputId}>
+      <label className={labelClasses} htmlFor={inputId}>
         {label}
       </label>
-      <div className={styles['container']}>
+      <div className={containerClasses}>
         {startLabel && (
-          <div className={styles['label-container']}>
+          <div className={labelContainerClasses}>
             <span className={styles['start-label']}>{startLabel}</span>
           </div>
         )}
@@ -166,7 +186,7 @@ export default function NumberField({
           className={inputClasses}
         />
         {endLabel && (
-          <div className={styles['label-container']}>
+          <div className={labelContainerClasses}>
             <span className={styles['end-label']}>{endLabel}</span>
           </div>
         )}

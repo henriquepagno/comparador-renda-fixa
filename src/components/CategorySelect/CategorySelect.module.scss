@@ -38,4 +38,32 @@
       background-color: darken($color-primary, 5%);
     }
   }
+
+  &--light {
+    [class$='control'] {
+      background-color: $light-theme-color-background-input;
+    }
+
+    [class$='singleValue'] {
+      color: $light-theme-color-text-dark;
+    }
+
+    [class$='Input'] {
+      color: $light-theme-color-text-dark;
+    }
+
+    [class$='menu'] {
+      color: $light-theme-color-text-dark;
+      background-color: $light-theme-color-background-input;
+
+      [class$='9gakcf-option'] {
+        background-color: $color-primary;
+      }
+
+      [class$='1n7v3ny-option'] {
+        color: $color-text-light;
+        background-color: darken($color-primary, 5%);
+      }
+    }
+  }
 }

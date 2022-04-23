@@ -42,5 +42,9 @@
     border: 1px solid $color-gray;
     pointer-events: auto;
     width: auto;
+
+    &--light {
+      background-color: $light-theme-color-background;
+    }
   }
 }
