@@ -48,6 +48,16 @@
       [class~='recharts-text'] {
         fill: $light-theme-color-text-dark;
       }
+
+      [class~='recharts-legend-wrapper'] {
+        [class~='recharts-default-legend'] {
+          [class~='recharts-legend-item'] {
+            [class~='recharts-legend-item-text'] {
+              color: $light-theme-color-text-dark !important;
+            }
+          }
+        }
+      }
     }
   }
 }

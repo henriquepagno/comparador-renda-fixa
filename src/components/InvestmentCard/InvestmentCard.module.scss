@@ -48,6 +48,11 @@
   &--orange {
     border-color: $investment-orange;
   }
+
+  &--light {
+    background-color: $light-theme-color-background-input;
+    color: $light-theme-color-text-dark;
+  }
 }
 
 .tag-container {
@@ -101,6 +106,12 @@
   &:hover {
     svg {
       fill: $color-imperialRed;
+    }
+  }
+
+  &--light {
+    svg {
+      fill: $color-gray;
     }
   }
 }
