@@ -16,6 +16,7 @@ import { currencyFormatter } from '../../common/functions/intlFormatters';
 import { IChartData } from '../../common/interfaces/calculated-data';
 
 import { useChart } from '../../hookStore/Chart';
+import { useConfig } from '../../hookStore/Config';
 import { useInformation } from '../../hookStore/Information';
 
 import LoadingData from '../LoadingData';
@@ -26,6 +27,17 @@ import styles from './LineChart.module.scss';
 export default function LineChart(): ReactElement {
   const { loading, chartData } = useChart();
   const { investmentOptions } = useInformation();
+  const { getClassWithTheme } = useConfig();
+
+  const chartClasses = getClassWithTheme(
+    styles['chart'],
+    styles['chart--light']
+  );
+
+  const responsiveChartClasses = getClassWithTheme(
+    styles['responsive-chart'],
+    styles['responsive-chart--light']
+  );
 
   const calculateLeftMargin = useCallback((): number => {
     if (!chartData || chartData.length === 0) return 0;
@@ -49,7 +61,7 @@ export default function LineChart(): ReactElement {
   }, [chartData]);
 
   return (
-    <div className={styles['chart']}>
+    <div className={chartClasses}>
       <LoadingData loading={loading}>
         {chartData.length === 0 ? (
           <NoChartData />
@@ -59,7 +71,7 @@ export default function LineChart(): ReactElement {
               width="100%"
               height="95%"
               debounce={1}
-              className={styles['responsive-chart']}
+              className={responsiveChartClasses}
             >
               <LineChartRecharts
                 data={chartData}

@@ -10,6 +10,10 @@
   display: flex;
   justify-content: center;
 
+  &--light {
+    color: $light-theme-color-text-dark;
+  }
+
   [class~='ant-radio-wrapper'] {
     cursor: pointer;
 

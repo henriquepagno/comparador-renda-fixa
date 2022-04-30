@@ -19,13 +19,25 @@
   > div:not(:last-of-type) {
     margin-right: 1.2rem;
   }
+
+  &--light {
+    background-color: $color-gray-light;
+    border: 1px solid $color-gray;
+  }
 }
 
 .icon {
-  transition: $base-transition;
+  transition: all 0.15s ease-in;
+  display: flex;
 
   &--invisible {
     visibility: hidden;
+  }
+
+  &--light {
+    svg {
+      fill: $light-theme-color-text-light;
+    }
   }
 }
 
@@ -34,19 +46,18 @@
 
   z-index: 1000;
 
-  top: 1px;
-  left: 3px;
+  left: 1.5px;
 
   background-color: $color-primary;
   position: absolute;
 
-  height: 2.3rem;
-  width: 2.3rem;
+  height: 21px;
+  width: 21px;
   border-radius: 50%;
 
   transition: $base-transition;
 
   &--checked {
-    left: calc(100% - 26px);
+    left: calc(100% - 23px);
   }
 }

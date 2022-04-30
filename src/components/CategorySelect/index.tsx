@@ -2,6 +2,8 @@ import React, { ReactElement } from 'react';
 import { Form } from 'antd';
 import Select from 'react-select';
 
+import { useConfig } from '../../hookStore/Config';
+
 import styles from './CategorySelect.module.scss';
 
 export default function CategorySelect(): ReactElement {
@@ -11,9 +13,21 @@ export default function CategorySelect(): ReactElement {
     { value: 'LCA', label: 'LCA' },
   ];
 
+  const { getClassWithTheme } = useConfig();
+
+  const labelClasses = getClassWithTheme(
+    styles['label'],
+    styles['label--light']
+  );
+
+  const reactSelectClasses = getClassWithTheme(
+    styles['react-select-container'],
+    styles['react-select-container--light']
+  );
+
   return (
     <div>
-      <label className={styles['label']} htmlFor="categorySelect">
+      <label className={labelClasses} htmlFor="categorySelect">
         Categoria
       </label>
       <Form.Item name="category" required>
@@ -21,7 +35,7 @@ export default function CategorySelect(): ReactElement {
           id="categorySelect"
           options={options}
           placeholder=""
-          className={styles['react-select-container']}
+          className={reactSelectClasses}
         />
       </Form.Item>
     </div>

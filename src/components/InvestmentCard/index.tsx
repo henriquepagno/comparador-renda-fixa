@@ -7,6 +7,9 @@ import {
   percentFormatter,
   currencyFormatter,
 } from '../..//common/functions/intlFormatters';
+import { Theme } from '../../common/enums/Theme';
+
+import { useConfig } from '../../hookStore/Config';
 
 import Tag from '../Tag';
 import Medal from '../Medal';
@@ -40,9 +43,17 @@ export default function InvestmentCard({
   onMouseOverFunction,
   onMouseLeaveFunction,
 }: IInvestmentCard): ReactElement {
+  const { theme, getClassWithTheme } = useConfig();
+
   const classes = clsx(
     styles['container'],
-    styles[`container--${color.toLowerCase()}`]
+    styles[`container--${color.toLowerCase()}`],
+    theme == Theme.Light && styles['container--light']
+  );
+
+  const deleteButtonClasses = getClassWithTheme(
+    styles['delete-button'],
+    styles['delete-button--light']
   );
 
   const typeDescription = getDescriptionType(type);
@@ -63,7 +74,7 @@ export default function InvestmentCard({
       }}
     >
       <Button
-        className={styles['delete-button']}
+        className={deleteButtonClasses}
         icon={<AiOutlineDelete />}
         label=""
         onClick={() => {

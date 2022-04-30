@@ -26,6 +26,10 @@
   position: relative;
   backface-visibility: hidden;
 
+  &--light {
+    color: $light-theme-color-text-dark;
+  }
+
   &::after {
     content: '';
 
@@ -48,12 +52,28 @@
   font-size: 1.2rem;
   animation: moveInFromLeft 0.5s ease-out;
   backface-visibility: hidden;
+
+  &--light {
+    color: $light-theme-color-text-light;
+  }
 }
 
 .icon {
   fill: $color-text-dark;
   height: 2.5rem;
   width: 2.5rem;
+
+  &--light {
+    fill: $light-theme-color-text-dark;
+  }
+}
+
+.actions {
+  display: flex;
+
+  > ul {
+    margin-left: 2rem;
+  }
 }
 
 .external-links__list {

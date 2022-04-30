@@ -14,4 +14,8 @@
     height: 6rem;
     width: 6rem;
   }
+
+  &--light {
+    color: $light-theme-color-text-dark;
+  }
 }

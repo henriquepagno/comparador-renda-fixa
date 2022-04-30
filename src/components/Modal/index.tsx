@@ -1,6 +1,7 @@
 import React, { ReactElement, useRef, ReactNode } from 'react';
 
 import useVisibleHandler from '../../hooks/useVisibleHandler';
+import { useConfig } from '../../hookStore/Config';
 
 import styles from './Modal.module.scss';
 
@@ -17,6 +18,12 @@ export default function Modal({
   children,
 }: IModalProps): ReactElement {
   const modalRef = useRef<any>();
+  const { getClassWithTheme } = useConfig();
+
+  const modalContent = getClassWithTheme(
+    styles['modal-content'],
+    styles['modal-content--light']
+  );
 
   useVisibleHandler(
     modalRef,
@@ -32,7 +39,7 @@ export default function Modal({
     <div className={styles['modal']} ref={modalRef}>
       <div className={styles['modal-mask']} />
       <div className={styles['modal-wrap']}>
-        <div className={styles['modal-content']}>{children}</div>
+        <div className={modalContent}>{children}</div>
       </div>
     </div>
   ) : (

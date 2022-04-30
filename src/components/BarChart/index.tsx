@@ -14,6 +14,7 @@ import { IChartData } from '../../common/interfaces/calculated-data';
 
 import { useChart } from '../../hookStore/Chart';
 import { useInformation } from '../../hookStore/Information';
+import { useConfig } from '../../hookStore/Config';
 
 import LoadingData from '../LoadingData';
 import NoChartData from '../NoChartData';
@@ -24,6 +25,17 @@ import styles from './BarChart.module.scss';
 export default function BarChart(): ReactElement {
   const { loading, chartData } = useChart();
   const { investmentOptions } = useInformation();
+  const { getClassWithTheme } = useConfig();
+
+  const chartClasses = getClassWithTheme(
+    styles['chart'],
+    styles['chart--light']
+  );
+
+  const responsiveChartClasses = getClassWithTheme(
+    styles['responsive-chart'],
+    styles['responsive-chart--light']
+  );
 
   const chartDataWithLabels = useMemo(
     () =>
@@ -96,7 +108,7 @@ export default function BarChart(): ReactElement {
   }, [chartDataWithLabels]);
 
   return (
-    <div className={styles['chart']}>
+    <div className={chartClasses}>
       <LoadingData loading={loading}>
         {chartDataWithLabels.length === 0 ? (
           <NoChartData />
@@ -106,7 +118,7 @@ export default function BarChart(): ReactElement {
               width="100%"
               height="95%"
               debounce={1}
-              className={styles['responsive-chart']}
+              className={responsiveChartClasses}
             >
               <BarChartRecharts
                 data={chartDataWithLabels}

@@ -13,6 +13,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+
+  &--light {
+    background-color: $light-theme-color-background-input;
+    color: $light-theme-color-text-dark;
+  }
 }
 
 .ir-message {
@@ -26,6 +31,32 @@
       [class~='recharts-default-tooltip'] {
         background-color: $color-background-input !important;
         border-color: $color-gray !important;
+      }
+    }
+  }
+
+  &--light {
+    [class~='recharts-wrapper'] {
+      [class~='recharts-tooltip-wrapper'] {
+        [class~='recharts-default-tooltip'] {
+          background-color: $color-gray-light !important;
+          background-color: $light-theme-color-background-input-darker !important;
+          border-radius: $base-border-radius;
+        }
+      }
+
+      [class~='recharts-text'] {
+        fill: $light-theme-color-text-dark;
+      }
+
+      [class~='recharts-legend-wrapper'] {
+        [class~='recharts-default-legend'] {
+          [class~='recharts-legend-item'] {
+            [class~='recharts-legend-item-text'] {
+              color: $light-theme-color-text-dark !important;
+            }
+          }
+        }
       }
     }
   }

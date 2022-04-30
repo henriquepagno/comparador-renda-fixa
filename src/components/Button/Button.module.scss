@@ -34,6 +34,14 @@
   &--secondary {
     background-color: transparent;
     border: solid 1px $color-primary;
+
+    &-light {
+      color: $light-theme-color-text-light;
+
+      &:hover {
+        color: $color-text-light;
+      }
+    }
   }
 
   &--icon {

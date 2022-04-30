@@ -36,6 +36,13 @@
   &--remove {
     animation: dissapearToRight 0.4s ease-out;
   }
+
+  &--light {
+    background-color: $light-theme-color-background-input-darker;
+    color: $light-theme-color-text-dark;
+    border: 1px solid $color-gray-light;
+    box-shadow: $base-shadow;
+  }
 }
 
 .title {
@@ -46,6 +53,10 @@
   font-size: 1.2rem;
   margin-top: 0.4rem;
   line-height: 2rem;
+
+  &--light {
+    color: $light-theme-color-text-dark;
+  }
 }
 
 .icon {
@@ -55,6 +66,10 @@
 
   &--info {
     fill: $color-yellow-toast;
+
+    &-light {
+      fill: $color-primary;
+    }
   }
 
   &--success {

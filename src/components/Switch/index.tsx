@@ -1,6 +1,10 @@
 import React, { useState, ReactElement, ReactNode, useEffect } from 'react';
 import clsx from 'clsx';
 
+import { Theme } from '../../common/enums/Theme';
+
+import { useConfig } from '../../hookStore/Config';
+
 import styles from './Switch.module.scss';
 
 interface ISwitch {
@@ -18,15 +22,23 @@ export default function Switch({
   value,
 }: ISwitch): ReactElement {
   const [checked, setChecked] = useState(value);
+  const { getClassWithTheme, theme } = useConfig();
+
+  const containerClasses = getClassWithTheme(
+    styles['container'],
+    styles['container--light']
+  );
 
   const uncheckedIconClasses = clsx(
     styles['icon'],
-    !checked && styles['icon--invisible']
+    !checked && styles['icon--invisible'],
+    theme == Theme.Light && styles['icon--light']
   );
 
   const checkedIconClasses = clsx(
     styles['icon'],
-    checked && styles['icon--invisible']
+    checked && styles['icon--invisible'],
+    theme == Theme.Light && styles['icon--light']
   );
 
   const handleClasses = clsx(
@@ -43,7 +55,7 @@ export default function Switch({
   }, [value]);
 
   return (
-    <div className={styles['container']} onClick={handleClick}>
+    <div className={containerClasses} onClick={handleClick}>
       <div className={uncheckedIconClasses}>{uncheckedIcon}</div>
       <div className={checkedIconClasses}>{checkedIcon}</div>
 

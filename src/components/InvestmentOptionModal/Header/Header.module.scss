@@ -12,6 +12,10 @@
   font-size: 2rem;
 
   border-bottom: 1px solid $color-primary;
+
+  &--light {
+    color: $light-theme-color-text-dark;
+  }
 }
 
 .icon {
