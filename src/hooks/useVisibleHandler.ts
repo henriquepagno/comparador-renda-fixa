@@ -3,7 +3,8 @@ import { MutableRefObject, useEffect } from 'react';
 export default function useVisibleHandler(
   ref: MutableRefObject<any>,
   handler: Function,
-  modal = false
+  modal = false,
+  closeOnClickOutside = false
 ) {
   const handleHideDropdown = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
@@ -19,13 +20,18 @@ export default function useVisibleHandler(
 
   useEffect(() => {
     document.addEventListener('keydown', handleHideDropdown, true);
-    document.addEventListener('click', handleClick, true);
+    closeOnClickOutside &&
+      document.addEventListener('mousedown', handleClick, true);
+
     if (!modal) {
       document.addEventListener('mouseleave', handleClick, true);
     }
+
     return () => {
       document.removeEventListener('keydown', handleHideDropdown, true);
-      document.removeEventListener('click', handleClick, true);
+
+      closeOnClickOutside &&
+        document.removeEventListener('mousedown', handleClick, true);
       if (!modal) {
         document.removeEventListener('mouseleave', handleClick, true);
       }
