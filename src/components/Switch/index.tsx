@@ -55,11 +55,15 @@ export default function Switch({
   }, [value]);
 
   return (
-    <div className={containerClasses} onClick={handleClick}>
+    <button
+      className={containerClasses}
+      onClick={handleClick}
+      aria-label="switch"
+    >
       <div className={uncheckedIconClasses}>{uncheckedIcon}</div>
       <div className={checkedIconClasses}>{checkedIcon}</div>
 
       <span className={handleClasses} />
-    </div>
+    </button>
   );
 }
