@@ -55,12 +55,14 @@ export default function Header(): ReactElement {
         <ul className={styles['external-links__list']}>
           <li>
             <IconLink
+              ariaLabel="github"
               url="https://github.com/henriquepagno/comparador-renda-fixa"
               icon={<AiFillGithub className={iconClasses} />}
             />
           </li>
           <li>
             <IconLink
+              ariaLabel="linkedin"
               url="https://www.linkedin.com/in/henrique-pagno-de-lima/"
               icon={<AiFillLinkedin className={iconClasses} />}
             />
